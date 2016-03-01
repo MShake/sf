@@ -12,6 +12,14 @@ use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
  */
 class ChatGroup
 {
+    
+     /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="chatGroups")
+     * @ORM\JoinTable(name="user_chat_group")
+     */
+    protected $users;
+    
+    
     /**
      * @ORM\OneToMany(targetEntity="Message", mappedBy="chatGroup")
      */
@@ -20,6 +28,7 @@ class ChatGroup
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
     
     /**
@@ -105,5 +114,39 @@ class ChatGroup
     public function getMessages()
     {
         return $this->messages;
+    }
+
+    /**
+     * Add user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return ChatGroup
+     */
+    public function addUser(\AppBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \AppBundle\Entity\User $user
+     */
+    public function removeUser(\AppBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

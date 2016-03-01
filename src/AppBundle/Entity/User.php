@@ -14,6 +14,12 @@ use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
  */
 class User extends BaseUser
 {
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="ChatGroup", mappedBy="users")
+     */
+    protected $groups;
+    
     /**
      * @var int
      *
@@ -45,6 +51,7 @@ class User extends BaseUser
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+        $this->groups = new ArrayCollection();
     }
 
     /**
