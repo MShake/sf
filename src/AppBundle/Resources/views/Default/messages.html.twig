@@ -3,27 +3,39 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ asset('bundles/app/css/messages.css') }}" type="text/css" media="all" />
   </head>
   <body>
 
       <div class="container">
           <div class="contacts-box">
-              <div class="contact">
-                  <h3>Afidalgo</h3>
-                  <h4>dernier message</h4>
+              <div class="header-contacts">
+                  <input type="text" name="name" value="" placeholder="search">
               </div>
-              <div class="contact">
-                  <h3>Mgrimler</h3>
-                  <h4>dernier message</h4>
+              <div class="container-contacts">
+
+                  <div class="contact">
+                      <h3>Afidalgo</h3>
+                      <h4>dernier message</h4>
+                  </div>
+                  <hr>
+                  <div class="contact">
+                      <h3>Mgrimler</h3>
+                      <h4>dernier message</h4>
+                  </div>
               </div>
           </div>
           <div class="messages-box">
               <div class="header-box">
-<h3>title</h3>
+                  <h3>title</h3>
               </div>
               <div class="content-box">
-
+                <p class="msg me">Lorem ipsum dolor sit amet, consectetur.</p>
+  				<p class="msg other">Magni magnam repudiandae vero reiciendis, dolorem corporis.</p>
+  				<p class="msg me">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio error natus illum quod aut a. Adipisci amet repellat, perferendis nisi quam similique consectetur earum, vel quasi quo sequi nulla nesciunt.</p>
+  				<p class="msg me">Lorem ipsum dolor sit amet, consectetur.</p>
+  				<p class="msg other">Magni magnam repudiandae vero reiciendis, dolorem corporis.</p>
               </div>
               <div class="write-box">
                 <input type="text" name="name" value="" placeholder="écris ton message ici ...">
