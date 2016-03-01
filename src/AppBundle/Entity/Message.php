@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Message
 {
+	
+	public function __construct(){
+		$this->dateCreated(new \DateTime());
+	}
+	
     /**
      * @var int
      *
@@ -20,6 +25,20 @@ class Message
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="content", type="string", length=255)
+     */
+    private $content;
+    
+    /**
+     * @var datetime
+     * 
+     * @ORM\Column(name="dateCreated", type="datetime")
+     */
+    private $dateCreated;
 
 
     /**
@@ -31,5 +50,52 @@ class Message
     {
         return $this->id;
     }
-}
 
+    /**
+     * Set content
+     *
+     * @param string $content
+     *
+     * @return Message
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Set dateCreated
+     *
+     * @param \DateTime $dateCreated
+     *
+     * @return Message
+     */
+    public function setDateCreated($dateCreated)
+    {
+        $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreated
+     *
+     * @return \DateTime
+     */
+    public function getDateCreated()
+    {
+        return $this->dateCreated;
+    }
+}

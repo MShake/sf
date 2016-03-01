@@ -20,6 +20,13 @@ class ChatGroup
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
 
 
     /**
@@ -31,5 +38,28 @@ class ChatGroup
     {
         return $this->id;
     }
-}
 
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return ChatGroup
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+}
