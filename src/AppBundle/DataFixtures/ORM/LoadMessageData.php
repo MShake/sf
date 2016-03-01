@@ -15,7 +15,21 @@ class LoadMessageData extends AbstractFixture implements OrderedFixtureInterface
             'Quisque tortor mauris, cursus suscipit quam id, rhoncus aliquet tortor. Nulla lobortis eu elit a feugiat. Nulla laoreet massa sed diam varius dictum.',
             'Sed et ante pharetra, porta ante placerat, bibendum magna.',
             'Proin faucibus sollicitudin eros, ut fringilla arcu accumsan et.',
-            'Phasellus eget efficitur nisl. Vivamus in lobortis sem. Duis velit ligula, tristique nec lacinia et, viverra id elit.'
+            'Phasellus eget efficitur nisl. Vivamus in lobortis sem. Duis velit ligula, tristique nec lacinia et, viverra id elit.',
+            'Curabitur in dignissim urna. Donec dignissim commodo tellus.',
+            'Fusce sed efficitur est, at consequat magna. Nullam auctor a nunc ac dictum. Nunc quis mi at eros malesuada lobortis ac at sem.',
+            'Duis ac fringilla diam.',
+            'Donec purus nulla, facilisis quis feugiat et, dictum vel purus. In euismod mattis ornare. Mauris condimentum fermentum vehicula.',
+            'Etiam eget scelerisque lorem. Nunc convallis felis eu nisl fringilla convallis.',
+            'Mauris semper felis eget aliquet ullamcorper.',
+            'Curabitur eros est, faucibus id tincidunt non, interdum ac lectus.',
+            'Morbi a leo non turpis volutpat varius. Nulla vel metus eget nisi euismod luctus in nec neque.',
+            'Aliquam ultricies tempus orci sed lobortis.',
+            'Vestibulum id magna auctor, mattis ligula non, feugiat felis.',
+            'Etiam nisi magna, volutpat porta ultricies placerat, porta ut eros.',
+            'Morbi id quam eget quam feugiat accumsan. Aliquam blandit orci diam, hendrerit molestie velit venenatis eget.',
+            'Vestibulum id magna auctor, mattis ligula non, feugiat felis.',
+            'Donec risus mauris, tincidunt id fringilla sit amet, elementum ut metus.'
             );
         
         foreach($contents as $content)
