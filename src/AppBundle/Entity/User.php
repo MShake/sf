@@ -50,7 +50,8 @@ class User extends BaseUser
     
     public function __construct()
     {
-        $this->messages = new ArrayCollection();
+    	parent::__construct();
+    	$this->messages = new ArrayCollection();
         $this->groups = new ArrayCollection();
     }
 
