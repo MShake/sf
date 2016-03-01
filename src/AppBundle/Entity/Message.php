@@ -13,11 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Message
 {
 	
-    public function __construct()
-    {
-            $this->dateCreated(new \DateTime());
-    }
-        
+            
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="messages")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
@@ -158,5 +154,11 @@ class Message
     public function getChatGroup()
     {
         return $this->chatGroup;
+    }
+    
+    
+    public function __construct()
+    {
+            $this->setDateCreated(new \DateTime());
     }
 }
