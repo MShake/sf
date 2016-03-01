@@ -13,10 +13,23 @@ use Doctrine\ORM\Mapping as ORM;
 class Message
 {
 	
-	public function __construct(){
-		$this->dateCreated(new \DateTime());
-	}
+    public function __construct()
+    {
+            $this->dateCreated(new \DateTime());
+    }
+        
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="messages")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
 	
+     /**
+     * @ORM\ManyToOne(targetEntity="ChatGroup", inversedBy="messages")
+     * @ORM\JoinColumn(name="chat_group_id", referencedColumnName="id")
+     */
+    protected $chatGroup;
+    
     /**
      * @var int
      *
@@ -97,5 +110,53 @@ class Message
     public function getDateCreated()
     {
         return $this->dateCreated;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Message
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set chatGroup
+     *
+     * @param \AppBundle\Entity\ChatGroup $chatGroup
+     *
+     * @return Message
+     */
+    public function setChatGroup(\AppBundle\Entity\ChatGroup $chatGroup = null)
+    {
+        $this->chatGroup = $chatGroup;
+
+        return $this;
+    }
+
+    /**
+     * Get chatGroup
+     *
+     * @return \AppBundle\Entity\ChatGroup
+     */
+    public function getChatGroup()
+    {
+        return $this->chatGroup;
     }
 }
