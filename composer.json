@@ -2,6 +2,7 @@
     "name": "maxime/lolochat",
     "license": "proprietary",
     "type": "project",
+    "description": "Lolochat like Slack",
     "autoload": {
         "psr-4": {
             "": "src/"
