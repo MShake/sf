@@ -14,12 +14,12 @@ use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
  */
 class User extends BaseUser
 {
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\ChatGroup", mappedBy="users")
      */
     protected $chatGroups;
-    
+
     /**
      * @var int
      *
@@ -28,31 +28,32 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
      * @var string
-     * 
+     *
      * @ORM\Column(name="firstname", type="string", length=150)
      */
     protected $firstname;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=150)
      */
     protected $lastname;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Message", mappedBy="user")
      */
     protected $messages;
-    
+
     public function __construct()
     {
     	parent::__construct();
-    	$this->messages = new ArrayCollection();
+    	  $this->messages = new ArrayCollection();
         $this->groups = new ArrayCollection();
+        $this->roles = array('ROLE_USER');
     }
 
     /**
