@@ -14,7 +14,7 @@ class ChatGroup
 {
     
      /**
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="chatGroups")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", inversedBy="chatGroups")
      * @ORM\JoinTable(name="user_chat_group")
      */
     protected $users;

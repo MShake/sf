@@ -16,9 +16,9 @@ class User extends BaseUser
 {
     
     /**
-     * @ORM\ManyToMany(targetEntity="ChatGroup", mappedBy="users")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\ChatGroup", mappedBy="users")
      */
-    protected $groups;
+    protected $chatGroups;
     
     /**
      * @var int
@@ -145,5 +145,39 @@ class User extends BaseUser
     public function getMessages()
     {
         return $this->messages;
+    }
+
+    /**
+     * Add chatGroup
+     *
+     * @param \AppBundle\Entity\ChatGroup $chatGroup
+     *
+     * @return User
+     */
+    public function addChatGroup(\AppBundle\Entity\ChatGroup $chatGroup)
+    {
+        $this->ChatGroups[] = $chatGroup;
+
+        return $this;
+    }
+
+    /**
+     * Remove chatGroup
+     *
+     * @param \AppBundle\Entity\ChatGroup $chatGroup
+     */
+    public function removeChatGroup(\AppBundle\Entity\ChatGroup $chatGroup)
+    {
+        $this->ChatGroups->removeElement($chatGroup);
+    }
+
+    /**
+     * Get chatGroups
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChatGroups()
+    {
+        return $this->ChatGroups;
     }
 }
