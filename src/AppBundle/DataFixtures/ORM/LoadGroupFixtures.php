@@ -33,7 +33,7 @@ class LoadGroupFixtures extends AbstractFixture implements OrderedFixtureInterfa
 	                $chatGroup->addUser($this->getReference("users2"));
                 }else{
                 	$chatGroup->addUser($this->getReference("users0"));
-                	$chatGroup->addUser($this->getReference("users4"));
+                	$chatGroup->addUser($this->getReference("users3"));
                 }
             
                 $manager->persist($chatGroup);
