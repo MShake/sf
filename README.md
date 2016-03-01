@@ -15,13 +15,13 @@ A Symfony project created on March 1, 2016, 2:12 pm.<br /><br />
 `php bin/console doctrine:schema:update --force --dump-sql`<br />
 <h2>Step 5</h2>
 `php bin/console doctrine:fixtures:load`<br />
-
+<br /><br />
 <b>Have Fun !</b>
 <br /><br />
 
 
 <h1>When pulling the project always do :</h1>
-`composer update` when pulling project<br />
+`composer update`<br />
 `php bin/console doctrine:schema:update --force --dump-sql`<br />
 `php bin/console doctrine:fixtures:load`
 <br /><br />
