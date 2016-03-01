@@ -25,7 +25,7 @@ class LoadGroupFixtures extends AbstractFixture implements OrderedFixtureInterfa
 
             while($i < 2) {
                 $chatGroup = new ChatGroup();
-                $chatGroup->setName("Groupe numero ".$i+1);
+                $chatGroup->setName("Groupe numero ".($i+1));
 				
                 if($i == 0){
 	                $chatGroup->addUser($this->getReference("users0"));
