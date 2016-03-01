@@ -25,6 +25,7 @@ A Symfony project created on March 1, 2016, 2:12 pm.<br /><br />
 <h1>When pulling the project always do :</h1>
 `composer update`<br />
 `php bin/console doctrine:schema:update --force --dump-sql`<br />
-`php bin/console doctrine:fixtures:load`
+`php bin/console doctrine:fixtures:load`<br />
+`php bin/console assets:install`
 <br /><br />
 
