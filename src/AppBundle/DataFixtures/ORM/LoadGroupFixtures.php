@@ -21,13 +21,14 @@ class LoadGroupFixtures extends AbstractFixture implements OrderedFixtureInterfa
     function load(ObjectManager $manager)
         {
 
-            $i = 1;
+            $i = 0;
 
-            while($i <= 100) {
+            while($i <= 3) {
 
+                $user = "users".$i;;
                 $chatGroup = new ChatGroup();
                 $chatGroup->setName("Groupe numero ".$i);
-                $chatGroup->addUser($this->getReference('user'));
+                $chatGroup->addUser($this->getReference($user));
                 $manager->persist($chatGroup);
                 $i++;
             }
