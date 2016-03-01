@@ -19,5 +19,3 @@
 composer.phar
 /bin/symfony_requirements.php
 composer.lock
-
-
