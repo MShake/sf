@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('bundles/app/css/messages.css') }}" type="text/css" media="all" />
   </head>
   <body>
+
       <div class="container">
           <div class="contacts-box">
               <div class="header-contacts">
@@ -41,7 +42,7 @@
                 {% endfor %}
               </div>
               <div class="write-box">
-                  <form action="{{ path('group', {id_group:'id_group'}) }}" method="post">
+                  <form action="{{ path('group', {id_group:id_group}) }}" method="post">
                         {{ form_widget(form.content) }}
 
                         <input class="send-message-button" type="submit" value="send" />
