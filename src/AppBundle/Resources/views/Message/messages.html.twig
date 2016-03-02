@@ -15,10 +15,11 @@
               </div>
               <div class="container-contacts">
                   {% for group in groups %}
-                  <div class="contact">
-                      <h3><a href="/group/{{ group.id }}">{{ group.name }}</a></h3>
-                  </div>
-                  <hr>
+                  <a class="contact" href="/group/{{ group.id }}">
+
+                          {{ group.name }}
+
+                  </a>
                   {% endfor %}
               </div>
           </div>
@@ -43,11 +44,11 @@
               <div class="write-box">
                   <form action="{{ path('group', {id_group:'id_group'}) }}" method="post">
                         {{ form_widget(form.content) }}
-                          
-                        <input type="submit" value="Proposer" />    
+
+                        <input class="send-message-button" type="submit" value="send" />
                         {{ form_rest(form) }}
                   </form>
-                      
+
 
                 <!--<input type="text" name="name" value="" placeholder="Taper un message">-->
               </div>

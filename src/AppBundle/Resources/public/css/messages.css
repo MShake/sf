@@ -79,10 +79,42 @@ input{
     position: absolute;
     display:block;
     width:20%;
-    margin-top:4%;
+    margin-top:5%;
+
 }
 .contact{
+    position: relative;
     width:90%;
+    height:50px;
+    line-height: 50px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:#EEE;
+    border-radius: 3px;
+    margin-top:5px;
+
+    text-decoration: none;
+    color:black;
+
+    display:block;
+
+}
+.contact:hover{
+    background-color:#009688;
+    transition: 0.5s;
+    color:white;
+}
+.send-message-button{
+    position:absolute;
+    display:inline-block;
+    margin-left:2%;
+    width:6%;
+    height:40px;
+}
+.send-message-button:hover{
+    background-color:#009688;
+    transition: 0.5s;
+    color:white;
 }
 h3{
     font-family: 'Open Sans'
