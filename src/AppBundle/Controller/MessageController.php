@@ -24,6 +24,11 @@ class MessageController extends Controller
     {
         $message = new Message();
 
+        $messages = null;
+        $groups = null;
+        $groupLoad = null;
+        $current_group = null;
+
         $form = $this->createForm(CreateMessageForm::Class, $message);
         
         $form->handleRequest($request);
@@ -37,39 +42,32 @@ class MessageController extends Controller
 
         $groupLastMessage = $repoMessage->findGroupLastMessageSend($user);
 
-        $groupLoad = $repoChatGroup->find($groupLastMessage[0]->getChatGroup()->getId());
+        if(count($groupLastMessage)>0) {
 
-        //Si il a envoyer un message
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $em = $this->get('doctrine')->getManager();
-            //$message->setMessage($form->content);
-            $message->setUser($this->getUser());
-            $message->setChatGroup($groupLoad);
+            $groupLoad = $repoChatGroup->find($groupLastMessage[0]->getChatGroup()->getId());
 
-            $em->persist($message);
-            $em->flush();
-            
-            $this->get('session')->getFlashBag()->add('success', 'Message ajotué');
-            return $this->redirectToRoute('message');
+            $groups = $repoChatGroup->findAll();
+            $current_group = $repoChatGroup->find($groupLoad->getId());
+            $messages = $repoMessage->findBy(
+                array('chatGroup' => $groupLoad),
+                array('dateCreated' => 'asc'));
+
+            $groupLoad = $groupLoad->getId();
         }
-
-        $groups = $repoChatGroup->findAll();
-        $current_group = $repoChatGroup->find($groupLoad->getId());
-
-
-        $messages = $repoMessage->findBy(
-            array('chatGroup' => $groupLoad),
-            array('dateCreated' => 'asc'));
 
         return array(
             'form' => $form->createView(),
             'groups' => $groups,
             'messages' => $messages,
-            'id_group' => $groupLoad->getId(),
+            'id_group' => $groupLoad,
             'current_group' => $current_group,
             'user_id' => $user_id
         );
+
+
+
+
+
         
     }
     

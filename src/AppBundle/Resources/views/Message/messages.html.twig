@@ -27,29 +27,33 @@
           </div>
           <div class="messages-box">
               <div class="header-box">
-                  <h3>{{ current_group.name }}</h3>
+                  <h3>{{ current_group != null ? current_group.name : '' }}</h3>
               </div>
               <div class="content-box" id="divExample">
-                {% for message in messages %}
-                    {% if message.user.id == user_id %}
-                        <p class="msg me">
-                    {% else %}
-                        <p class="msg other">
-                        <span class="msg-username"> ~ {{ message.user.firstname }} {{ message.user.lastname }}</span>
-                    {% endif %}
+                  {% if current_group != null %}
+                    {% for message in messages %}
+                        {% if message.user.id == user_id %}
+                            <p class="msg me">
+                        {% else %}
+                            <p class="msg other">
+                            <span class="msg-username"> ~ {{ message.user.firstname }} {{ message.user.lastname }}</span>
+                        {% endif %}
 
-                    {{ message.content }}
-                        <span class="msg-date">{{ message.dateCreated|date('d/m/Y H:i') }}</span>
-                        </p>
-                {% endfor %}
+                        {{ message.content }}
+                            <span class="msg-date">{{ message.dateCreated|date('d/m/Y H:i') }}</span>
+                            </p>
+                    {% endfor %}
+                  {% endif %}
               </div>
               <div class="write-box">
+                  {% if current_group != null %}
                   <form action="{{ path('group', {id_group:id_group}) }}" method="post">
                         {{ form_widget(form.content) }}
 
                         <input class="send-message-button" type="submit" value="send" />
                         {{ form_rest(form) }}
                   </form>
+                  {% endif %}
 
 
                 <!--<input type="text" name="name" value="" placeholder="Taper un message">-->
