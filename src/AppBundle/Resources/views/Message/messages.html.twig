@@ -38,17 +38,23 @@
   				<p class="msg other">Magni magnam repudiandae vero reiciendis, dolorem corporis.</p>
               </div>
               <div class="write-box">
-                <input type="text" name="name" value="" placeholder="Taper un message">
-                  <input type="submit" name="name" class="valider">
+                  <form action="{{ path('message') }}" method="post">
+                        {{ form_widget(form.content) }}
+                          
+                        <input type="submit" value="Proposer" />    
+                        {{ form_rest(form) }}
+                  </form>
+                      
+
+                <!--<input type="text" name="name" value="" placeholder="Taper un message">-->
               </div>
           </div>
-          <div>
+              <div>
               Acces rapide
               <a href="/login">Login</a>
               <a href="/register">Register</a>
           </div>
       </div>
-
 
   </body>
 </html>
