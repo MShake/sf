@@ -12,9 +12,10 @@
       <div class="container">
           <div class="contacts-box">
               <div class="header-contacts">
-                  <input type="text" name="name" value="" placeholder="search">
+                  <input class="search" type="text" name="name" value="" placeholder="search">
               </div>
               <div class="container-contacts">
+                  <a class="contact create-group" href="">+</a>
                   {% for group in groups %}
                   <a class="contact" href="/group/{{ group.id }}">
 
@@ -53,7 +54,7 @@
 
                 <!--<input type="text" name="name" value="" placeholder="Taper un message">-->
               </div>
-         
+
       </div>
     <script>
                 var objDiv = document.getElementById("divExample");

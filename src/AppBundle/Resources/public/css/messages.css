@@ -58,7 +58,8 @@ body{
     bottom:0;
 }
 input{
-    margin-left:15%;
+    display:inline-block;
+    margin-left:1%;
     margin-top:10px;
     height:30px;
     width:70%;
@@ -153,4 +154,15 @@ h4{
     margin-top:10px;
     display: block;
     text-align: right;
+}
+.create-group{
+    width: 50px;
+    color:white;
+    background-color:#53B97F;
+    border-radius: 100px;
+}
+.create-group:hover{
+    color:white;
+    background-color:#429465;
+    transition:0.5s;
 }
