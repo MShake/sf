@@ -82,7 +82,6 @@ input{
     display:block;
     width:20%;
     margin-top:5%;
-
 }
 .contact{
     position: relative;
@@ -128,19 +127,28 @@ h4{
 }
 
 .msg{
-
-	padding:15px;
-	border-radius: 18px;
+    word-wrap: break-word;
+    display:block;
+	padding:10px;
+	border-radius: 15px;
 	background-color:#F2F2F2;
-	width:75%;
+
+    max-width: 60%;
 }
 .me{
+
 	color:white;
 	background-color: #53B97F;
-	margin-left:15%;
+	margin-left:35%;
+    width: inherit;
+
+
 }
 .other{
+    width: inherit;
+
     margin-left:5%;
+
 }
 .msg-username{
     font-style: italic;
@@ -165,4 +173,9 @@ h4{
     color:white;
     background-color:#429465;
     transition:0.5s;
+}
+
+.active{
+    background-color:#009688;
+    color:white;
 }
