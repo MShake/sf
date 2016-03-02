@@ -61,7 +61,6 @@ class MessageController extends Controller
         
         $form->handleRequest($request);
         $user_id = $this->get('security.token_storage')->getToken()->getUser()->getId();
-        $current_user = $this->get('security.token_storage')->getToken()->getUser();
         if($form->isSubmitted() && $form->isValid())
         {
             $em = $this->get('doctrine')->getManager();
@@ -75,7 +74,11 @@ class MessageController extends Controller
             return $this->redirect($this->generateUrl('group', array('id_group' => $group->getId())));
         }
         $groups = $this->get('doctrine')->getManager()->getRepository('AppBundle:ChatGroup')->findAll();
-        $messages = "";
+        $repo = $this->get('doctrine')->getManager()->getRepository('AppBundle:Message');
+        $messages = $repo->findBy(
+                array('chatGroup' => $group),
+                array('dateCreated' => 'asc'));
+        //$messages = "";
         return array(
             'form' => $form->createView(),
             'groups' => $groups,
