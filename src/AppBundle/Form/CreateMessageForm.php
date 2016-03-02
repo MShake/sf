@@ -24,7 +24,6 @@ class CreateMessageForm extends AbstractType
     {    
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Message',
-            'csrf_protection' => false,
             ));
     }
 
