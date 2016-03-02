@@ -34,11 +34,11 @@
                         <p class="msg me">
                     {% else %}
                         <p class="msg other">
-                        <span class="msg-username"> ~ Antoine Fidalgo</span>
+                        <span class="msg-username"> ~ {{ message.user.firstname }} {{ message.user.lastname }}</span>
                     {% endif %}
 
                     {{ message.content }}
-                        <span class="msg-date">10:00</span>
+                        <span class="msg-date">{{ message.dateCreated|date('d/m/Y H:i') }}</span>
                         </p>
                 {% endfor %}
               </div>
