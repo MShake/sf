@@ -30,11 +30,16 @@
               </div>
               <div class="content-box" id="divExample">
                 {% for message in messages %}
-                {% if message.user.id == user_id %}
-                <p class="msg me">
-                {% else %}
-                <p class="msg other">
-                {% endif %}{{ message.content }}</p>
+                    {% if message.user.id == user_id %}
+                        <p class="msg me">
+                    {% else %}
+                        <p class="msg other">
+                        <span class="msg-username"> ~ Antoine Fidalgo</span>
+                    {% endif %}
+
+                    {{ message.content }}
+                        <span class="msg-date">10:00</span>
+                        </p>
                 {% endfor %}
               </div>
               <div class="write-box">
