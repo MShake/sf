@@ -55,6 +55,8 @@ class MessageController extends Controller
         }
 
         $groups = $repoChatGroup->findAll();
+        $current_group = $repoChatGroup->find($groupLoad->getId());
+
 
         $messages = $repoMessage->findBy(
             array('chatGroup' => $groupLoad),
@@ -65,6 +67,7 @@ class MessageController extends Controller
             'groups' => $groups,
             'messages' => $messages,
             'id_group' => $groupLoad->getId(),
+            'current_group' => $current_group,
             'user_id' => $user_id
         );
         
