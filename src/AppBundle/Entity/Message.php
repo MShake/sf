@@ -139,7 +139,7 @@ class Message
      *
      * @return Message
      */
-    public function setChatGroup(\AppBundle\Entity\ChatGroup $chatGroup = null)
+    public function setChatGroup(\AppBundle\Entity\ChatGroup $chatGroup)
     {
         $this->chatGroup = $chatGroup;
 

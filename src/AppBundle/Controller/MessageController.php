@@ -7,7 +7,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Message;
+use AppBundle\Entity\ChatGroup;
 use AppBundle\Form\CreateMessageForm;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
 
 class MessageController extends Controller
 {
@@ -49,8 +52,9 @@ class MessageController extends Controller
     /**
      * @Route("/group/{id_group}", name="group")
      * @Template("AppBundle:Message:messages.html.twig")
+     * @ParamConverter("group", class="AppBundle:ChatGroup", options={"id" = "id_group"})
      */
-    public function groupAction(Request $request, $id_group)
+    public function groupAction(Request $request, ChatGroup $group)
     {
         $message = new Message();
         $form = $this->createForm(CreateMessageForm::Class, $message);
@@ -61,14 +65,14 @@ class MessageController extends Controller
         if($form->isSubmitted() && $form->isValid())
         {
             $em = $this->get('doctrine')->getManager();
-            //$message->setMessage($form->content);
+
             $message->setUser($this->getUser());
-            //$message->setChatGroup($this->getChatGroup());
+            $message->setChatGroup($group);
             $em->persist($message);
             $em->flush();
             
-            $this->get('session')->getFlashBag()->add('success', 'Message ajotué');
-            return $this->redirect($this->generateUrl('group', array('id_group' => $id_group, 'test' => 'testeur')));
+            $this->get('session')->getFlashBag()->add('success', 'Message ajouté');
+            return $this->redirect($this->generateUrl('group', array('id_group' => $group->getId())));
         }
         $groups = $this->get('doctrine')->getManager()->getRepository('AppBundle:ChatGroup')->findAll();
         $messages = "";
@@ -76,7 +80,7 @@ class MessageController extends Controller
             'form' => $form->createView(),
             'groups' => $groups,
             'messages' => $messages,
-            'id_group' => $id_group,
+            'id_group' => $group->getId(),
             'user_id' => $user_id
         );
     }
