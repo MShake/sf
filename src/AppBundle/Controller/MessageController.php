@@ -74,6 +74,7 @@ class MessageController extends Controller
             return $this->redirect($this->generateUrl('group', array('id_group' => $group->getId())));
         }
         $groups = $this->get('doctrine')->getManager()->getRepository('AppBundle:ChatGroup')->findAll();
+        $current_group = $this->get('doctrine')->getManager()->getRepository('AppBundle:ChatGroup')->find($group->getId());
         $repo = $this->get('doctrine')->getManager()->getRepository('AppBundle:Message');
         $messages = $repo->findBy(
                 array('chatGroup' => $group),
@@ -84,6 +85,7 @@ class MessageController extends Controller
             'groups' => $groups,
             'messages' => $messages,
             'id_group' => $group->getId(),
+            'current_group' => $current_group,
             'user_id' => $user_id
         );
     }
