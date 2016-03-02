@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function findAlltest()
+    {
+        return $this->getEntityManager()->createQueryBuilder()
+            ->add('select','p')
+            ->add('from','Post p')
+            ->getFirstResult();
+
+    }
 }

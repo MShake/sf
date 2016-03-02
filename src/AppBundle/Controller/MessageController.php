@@ -2,13 +2,15 @@
 
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Message;
 use AppBundle\Entity\ChatGroup;
 use AppBundle\Form\CreateMessageForm;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Routing\Annotation\Route;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
@@ -21,29 +23,51 @@ class MessageController extends Controller
     public function messageAction(Request $request)
     {
         $message = new Message();
-        
-        
+
         $form = $this->createForm(CreateMessageForm::Class, $message);
         
         $form->handleRequest($request);
-        
+
+        $user_id = $this->get('security.token_storage')->getToken()->getUser()->getId();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        //Envoi idUser pour recupere le dernier message Envoyee
+        $repoMessage = $this->get('doctrine')->getManager()->getRepository('AppBundle:Message');
+        $repoChatGroup = $this->get('doctrine')->getManager()->getRepository('AppBundle:ChatGroup');
+
+        $groupLastMessage = $repoMessage->findGroupLastMessageSend($user);
+
+        $groupLoad = $repoChatGroup->find($groupLastMessage[0]->getChatGroup()->getId());
+
+        //Si il a envoyer un message
         if($form->isSubmitted() && $form->isValid())
         {
             $em = $this->get('doctrine')->getManager();
             //$message->setMessage($form->content);
+            $message->setUser($this->getUser());
+            $message->setChatGroup($groupLoad);
+
             $em->persist($message);
             $em->flush();
             
             $this->get('session')->getFlashBag()->add('success', 'Message ajotué');
             return $this->redirectToRoute('message');
         }
-        $groups = $this->get('doctrine')->getManager()->getRepository('AppBundle:ChatGroup')->findAll();
-        $messages = "";
-        $user_id = $this->get('security.token_storage')->getToken()->getUser()->getId();
+
+        $groups = $repoChatGroup->findAll();
+        $current_group = $repoChatGroup->find($groupLoad->getId());
+
+
+        $messages = $repoMessage->findBy(
+            array('chatGroup' => $groupLoad),
+            array('dateCreated' => 'asc'));
+
         return array(
             'form' => $form->createView(),
             'groups' => $groups,
             'messages' => $messages,
+            'id_group' => $groupLoad->getId(),
+            'current_group' => $current_group,
             'user_id' => $user_id
         );
         
