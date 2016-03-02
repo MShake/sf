@@ -47,6 +47,7 @@ body{
     height:84%;
     background:#EBE7E1;
     background-image: url('../img/background3.jpg');
+    overflow: auto;
 }
 .write-box{
     position: absolute;
