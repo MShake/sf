@@ -3,8 +3,6 @@
 namespace UserBundle\Controller;
 
 use FOS\UserBundle\Controller\SecurityController as BaseController;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 class SecurityController extends BaseController
