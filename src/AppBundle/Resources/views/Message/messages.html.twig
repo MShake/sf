@@ -17,7 +17,8 @@
               <div class="container-contacts">
                   <a class="contact create-group" href="">+</a>
                   {% for group in groups %}
-                  <a class="contact" href="/group/{{ group.id }}">
+
+                  <a class="contact {% if group.id == current_group.id %} active {% endif %}" href="/group/{{ group.id }}">
 
                           {{ group.name }}
 
@@ -41,6 +42,7 @@
                     {{ message.content }}
                         <span class="msg-date">{{ message.dateCreated|date('d/m/Y H:i') }}</span>
                         </p>
+
                 {% endfor %}
               </div>
               <div class="write-box">
