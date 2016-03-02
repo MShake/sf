@@ -26,7 +26,7 @@ class MessageController extends Controller{
 	
     /**
      * @Route("/", name="message")
-     * @Template("AppBundle:Message:messages.html.twig")
+     * @Template()
      */
     public function messageAction(Request $request){
         $message = new Message();
@@ -51,7 +51,7 @@ class MessageController extends Controller{
     
     /**
      * @Route("/group/{id_group}", name="group")
-     * @Template("AppBundle:Message:messages.html.twig")
+     * @Template("AppBundle:Message:message.html.twig")
      * @ParamConverter("group", class="AppBundle:ChatGroup", options={"id" = "id_group"})
      */
     public function groupAction(Request $request, ChatGroup $group){
