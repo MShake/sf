@@ -155,6 +155,10 @@ h4{
     background-color: rgb(207, 98, 98)!important;
     color:white;
 }
+.report-msg{
+    color:black;
+    font-style: italic;
+}
 .msg-username{
     font-style: italic;
     display: block;

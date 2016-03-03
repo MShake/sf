@@ -41,8 +41,12 @@
                             <p class="msg other {% if message.report %} report {% endif %}">
                             <span class="msg-username"> ~ {{ message.user.firstname }} {{ message.user.lastname }}</span>
                         {% endif %}
-
+                        {% if message.report %}
+                        <span class="report-msg">/!\ Message reported</span>
+                        {% else %}
                         {{ message.content }}
+                        {% endif %}
+
                             <span class="msg-date">{{ message.dateCreated|date('d/m/Y H:i') }}</span>
                             </p>
                     {% endfor %}
