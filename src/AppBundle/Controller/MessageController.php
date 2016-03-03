@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -106,5 +107,15 @@ class MessageController extends Controller{
     private function initRepo(){
     	$this->repoMessage = $this->get('doctrine')->getManager()->getRepository('AppBundle:Message');
     	$this->repoChatGroup = $this->get('doctrine')->getManager()->getRepository('AppBundle:ChatGroup');
+    }
+    
+    /**
+     * @Route("/report/{id_message}", name="report_message")
+     * @Template()
+     */
+    public function reportMessage($id_message){
+        $report = $this->get("lolochat.messageservice");
+        $report->add($id_message);
+        return new Response("Reported");
     }
 }

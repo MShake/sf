@@ -43,6 +43,13 @@ class Message
     private $content;
     
     /**
+     * @var boolean
+     * 
+     * @ORM\Column(name="report", type="boolean", length=2)
+     */
+    private $report;
+    
+    /**
      * @var datetime
      * 
      * @ORM\Column(name="dateCreated", type="datetime")
@@ -160,5 +167,29 @@ class Message
     public function __construct()
     {
             $this->setDateCreated(new \DateTime());
+    }
+
+    /**
+     * Set report
+     *
+     * @param boolean $report
+     *
+     * @return Message
+     */
+    public function setReport($report)
+    {
+        $this->report = $report;
+
+        return $this;
+    }
+
+    /**
+     * Get report
+     *
+     * @return boolean
+     */
+    public function getReport()
+    {
+        return $this->report;
     }
 }
