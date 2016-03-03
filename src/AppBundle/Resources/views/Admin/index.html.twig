@@ -1,1 +1,33 @@
 {% extends 'AppBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/admin.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block body %}
+
+    {% include 'AppBundle::menu.html.twig' %}
+    
+    <table>
+        <tr>
+            <th width="35%">Content</th>
+            <th width="25%">Date created</th>
+            <th width="20%">User</th>
+            <th width="10%">Group</th>
+            <th width="10%">Actions</th>
+        </tr>
+        {% for message in messages %}
+            <tr>
+                <td>{{message.content}}</td>
+                <td>{{message.dateCreated|date("d/m/Y h:m:s")}}</td>
+                <td>{{message.user.usernameCanonical}}</td>
+                <td>{{message.chatGroup.name}}</td>
+                <td>
+                    <a href="/admin/message/{{message.id}}">Edit</a>
+                    <a href="/admin/message/delete/{{message.id}}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
