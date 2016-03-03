@@ -39,6 +39,7 @@ input.check-memory{
 }
 
 .login-button{
+    text-decoration: none;
     display:inline;
     margin-left:2%;
     font-size: 15pt;
