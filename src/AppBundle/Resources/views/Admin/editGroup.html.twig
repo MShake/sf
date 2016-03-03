@@ -11,7 +11,8 @@
     <h1>Update group</h1>
 
     <form action="{{ path('admin-group-edit', {id:group.id}) }}" method="post">
-        {{ form_widget(form.name) }}
+        <label>Name : </label>
+        {{ form_widget(form.name) }}<br/><br/>
         <input type="submit" value="Update" />
         {{ form_rest(form) }}
     </form>

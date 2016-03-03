@@ -1,0 +1,23 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/messages.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/admin.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block body %}
+    
+    {% include 'AppBundle::menu.html.twig' %}
+    
+    <h1>Update message</h1>
+
+    <form action="{{ path('admin-message-edit', {id:message.id}) }}" method="post">
+        <label>Content : </label>
+        {{ form_widget(form.content) }}<br/>
+        
+        <label>Report : </label>
+        {{ form_widget(form.report) }}<br/><br/>
+        <input type="submit" value="Update" />
+        {{ form_rest(form) }}
+    </form>
+{% endblock %}
