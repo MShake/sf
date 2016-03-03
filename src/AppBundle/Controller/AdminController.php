@@ -60,6 +60,23 @@ class AdminController extends Controller{
 	}
 	
 	/**
+	 * @Route("/admin/message/changeStatut/{id}", name="admin-message-change-statut")
+	 */
+	public function changeStatutMessageAction($id){
+		$this->initRepo();
+		$message = $this->repoMessage->find($id);
+	
+		if(!$message->getReport()){
+			return $this->redirect($this->generateUrl('admin'));
+		}
+		
+		$message->setEnable(!$message->getEnable());
+		
+		$this->update("Message");
+		return $this->redirect($this->generateUrl('admin'));
+	}
+	
+	/**
 	 * @Route("/admin/groups", name="admin-groups")
 	 * @Template()
 	 */
@@ -90,6 +107,19 @@ class AdminController extends Controller{
 				'form' => $form->createView(),
 				'group' => $group
 		);
+	}
+	
+	/**
+	 * @Route("/admin/group/changeStatut/{id}", name="admin-group-change-statut")
+	 */
+	public function changeStatutGroupAction($id){
+		$this->initRepo();
+		$group = $this->repoChatGroup->find($id);
+	
+		$group->setEnable(!$group->getEnable());
+	
+		$this->update("Group");
+		return $this->redirect($this->generateUrl('admin-groups'));
 	}
 	
 	private function update($type){

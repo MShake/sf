@@ -7,3 +7,6 @@ services:
         arguments: ['@router']
         tags:
             - { name: kernel.event_subscriber }
+    redirect.after.login:
+        class: UserBundle\Redirection\AfterLoginRedirection
+        arguments: ['@router']

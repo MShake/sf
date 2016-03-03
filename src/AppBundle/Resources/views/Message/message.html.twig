@@ -13,18 +13,21 @@
           <div class="contacts-box">
               <div class="header-contacts">
                   <form action="{{ path('groupAdd') }}" method="post" id="addgroupform">
-                      {{ form_widget(form2.name) }}
+                      {{ form_widget(form2.name) }}
                       {{ form_rest(form2) }}
                   </form>
               </div>
               <div class="container-contacts">
                   <button class="contact create-group" id="addbuttongroup" >+</button>
                   {% for group in groups %}
-                  <a class="contact {% if group.id == current_group.id %} active {% endif %}" href="{{ path('group', {id_group:group.id}) }}">
+                    {% if group.enable %}
+                        <a class="contact {% if group.id == current_group.id %} active {% endif %}" href="{{ path('group', {id_group:group.id}) }}">
 
-                          {{ group.name }}
 
-                  </a>
+                            {{ group.name }}
+
+                        </a>
+                    {% endif %}
                   {% endfor %}
               </div>
           </div>
@@ -59,10 +62,10 @@
               </div>
               <div class="write-box">
                   {% if current_group != null %}
-                  <form action="{{ path('group', {id_group:id_group}) }}" method="post">
-                        {{ form_widget(form.content) }}
+                  <form action="{{ path('group', {id_group:id_group}) }}" method="post">
+                        {{ form_widget(form.content) }}
 
-                        <input class="send-message-button" type="submit" value="send" />
+                        <input class="send-message-button" type="submit" value="send" />
                         {{ form_rest(form) }}
                   </form>
                   {% endif %}
