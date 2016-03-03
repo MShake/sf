@@ -38,24 +38,26 @@
               <div class="content-box" id="divExample">
                   {% if current_group != null %}
                     {% for message in messages %}
-                        {% if message.user.id == user_id %}
-                            <p class="msg me {% if message.report %} report {% endif %}">
-                        {% else %}
-                            <p class="msg other {% if message.report %} report {% endif %}">
-                            <span class="msg-username"> ~ {{ message.user.firstname }} {{ message.user.lastname }}</span>
-                            {% if message.report != 1 %}
-                            <a class="signal-link" href="{{ path('report_message', {id_message:message.id, id_group:id_group}) }}">report</a>
+                        {% if message.enable %}
+                            {% if message.user.id == user_id %}
+                                <p class="msg me {% if message.report %} report {% endif %}">
+                            {% else %}
+                                <p class="msg other {% if message.report %} report {% endif %}">
+                                <span class="msg-username"> ~ {{ message.user.firstname }} {{ message.user.lastname }}</span>
+                                {% if message.report != 1 %}
+                                <a class="signal-link" href="{{ path('report_message', {id_message:message.id, id_group:id_group}) }}">report</a>
+                                {% endif %}
                             {% endif %}
+                            {% if message.report %}
+                            <span class="msg-content report-msg">/!\ Message reported</span>
+                            {% else %}
+                            <span class="msg-content">{{ message.content }}</span>
+    
+                            {% endif %}
+    
+                                <span class="msg-date">{{ message.dateCreated|date('d/m/Y H:i') }}</span>
+                                </p>
                         {% endif %}
-                        {% if message.report %}
-                        <span class="msg-content report-msg">/!\ Message reported</span>
-                        {% else %}
-                        <span class="msg-content">{{ message.content }}</span>
-
-                        {% endif %}
-
-                            <span class="msg-date">{{ message.dateCreated|date('d/m/Y H:i') }}</span>
-                            </p>
                     {% endfor %}
                   {% endif %}
 
