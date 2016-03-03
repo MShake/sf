@@ -25,7 +25,12 @@ class AdminController extends Controller{
 	 * @Template()
 	 */
 	public function indexAction(Request $request){
+		$this->initRepo();
+		$messages = $this->repoMessage->findByReport(true);
 		
+		return array(
+				'messages' => $messages,
+		);
 	}
 	
 	/**
