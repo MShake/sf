@@ -10,10 +10,10 @@
     
     <table>
         <tr>
-            <th width="35%">Content</th>
-            <th width="25%">Date created</th>
-            <th width="20%">User</th>
-            <th width="10%">Group</th>
+            <th width="40%">Content</th>
+            <th width="20%">Date created</th>
+            <th width="15%">User</th>
+            <th width="15%">Group</th>
             <th width="10%">Actions</th>
         </tr>
         {% for message in messages %}
@@ -24,7 +24,9 @@
                 <td>{{message.chatGroup.name}}</td>
                 <td>
                     <a href="/admin/message/{{message.id}}">Edit</a>
-                    <a href="/admin/message/delete/{{message.id}}">Delete</a>
+                    <a href="/admin/message/changeStatut/{{message.id}}"> 
+                        {{message.enable == true ? 'Disable' : 'Enable'}} 
+                    </a>
                 </td>
             </tr>
         {% endfor %}

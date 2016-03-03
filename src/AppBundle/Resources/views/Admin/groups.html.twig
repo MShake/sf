@@ -10,15 +10,17 @@
     
     <table>
         <tr>
-            <th width="75%">Name</th>
-            <th width="25%">Actions</th>
+            <th width="85%">Name</th>
+            <th width="15%">Actions</th>
         </tr>
         {% for group in groups %}
             <tr>
                 <td>{{group.name}}</td>
                 <td>
                     <a href="/admin/group/{{group.id}}">Edit</a>
-                    <a href="/admin/group/delete/{{group.id}}">Delete</a>
+                    <a href="/admin/group/changeStatut/{{group.id}}"> 
+                        {{group.enable == true ? 'Disable' : 'Enable'}} 
+                    </a>
                 </td>
             </tr>
         {% endfor %}

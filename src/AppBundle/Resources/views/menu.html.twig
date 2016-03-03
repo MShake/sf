@@ -1,7 +1,7 @@
 <ul class="nav"><!--
-    --><li><a href="/">Accueil</a></li><!--
-    --><li><a href="/admin">Messages signalés</a></li><!--
-    --><li><a href="/admin/groups">Groupes</a></li><!--
-    --><li><a href="/admin/users">Utilisateurs</a></li><!--
-    --><li><a href="/logout">Déconnexion</a></li>
+    --><li><a href="{{ path('message') }}">Accueil</a></li><!--
+    --><li><a href="{{ path('admin') }}">Messages signalés</a></li><!--
+    --><li><a href="{{ path('admin-groups') }}">Groupes</a></li><!--
+    --><li><a href="#">Utilisateurs</a></li><!--
+    --><li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
 </ul>
