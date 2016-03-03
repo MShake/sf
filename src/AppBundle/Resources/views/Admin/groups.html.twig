@@ -1,0 +1,27 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/admin.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block body %}
+
+    {% include 'AppBundle::menu.html.twig' %}
+    
+    <table>
+        <tr>
+            <th width="75%">Name</th>
+            <th width="25%">Actions</th>
+        </tr>
+        {% for group in groups %}
+            <tr>
+                <td>{{group.name}}</td>
+                <td>
+                    <a href="/admin/group/{{group.id}}">Edit</a>
+                    <a href="/admin/group/delete/{{group.id}}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

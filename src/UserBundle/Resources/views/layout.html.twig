@@ -14,8 +14,6 @@
                 <a href="{{ path('fos_user_security_logout') }}">
                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                 </a>
-            {% elseif app.request.get('_route') != 'fos_user_security_login' %}
-                <a href="{{ path('fos_user_security_login') }}">Connexion</a>
             {% endif %}
         </div>
 

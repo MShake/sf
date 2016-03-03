@@ -12,12 +12,14 @@
       <div class="container">
           <div class="contacts-box">
               <div class="header-contacts">
-                  <input class="search" type="text" name="name" value="" placeholder="search">
+                  <form action="{{ path('groupAdd') }}" method="post" id="addgroupform">
+                      {{ form_widget(form2.name) }}
+                      {{ form_rest(form2) }}
+                  </form>
               </div>
               <div class="container-contacts">
-                  <a class="contact create-group" href="">+</a>
+                  <button class="contact create-group" id="addbuttongroup" >+</button>
                   {% for group in groups %}
-
                   <a class="contact {% if group.id == current_group.id %} active {% endif %}" href="/group/{{ group.id }}">
 
                           {{ group.name }}
@@ -65,6 +67,12 @@
     <script>
                 var objDiv = document.getElementById("divExample");
                 objDiv.scrollTop = objDiv.scrollHeight;
+
+                var form = document.getElementById("addgroupform");
+
+                document.getElementById("addbuttongroup").addEventListener("click", function () {
+                    form.submit();
+                });
         </script>
   </body>
 </html>
