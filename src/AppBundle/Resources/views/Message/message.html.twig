@@ -8,7 +8,7 @@
   </head>
   <body>
       <div class="container">
-          <a class="logout" href="/logout">logout</a>
+          <a class="logout" href="{{path('fos_user_security_logout')}}">logout</a>
 
           <div class="contacts-box">
               <div class="header-contacts">
@@ -20,7 +20,7 @@
               <div class="container-contacts">
                   <button class="contact create-group" id="addbuttongroup" >+</button>
                   {% for group in groups %}
-                  <a class="contact {% if group.id == current_group.id %} active {% endif %}" href="/group/{{ group.id }}">
+                  <a class="contact {% if group.id == current_group.id %} active {% endif %}" href="{{ path('group', {id_group:group.id}) }}">
 
                           {{ group.name }}
 
@@ -41,7 +41,7 @@
                             <p class="msg other {% if message.report %} report {% endif %}">
                             <span class="msg-username"> ~ {{ message.user.firstname }} {{ message.user.lastname }}</span>
                             {% if message.report != 1 %}
-                            <a class="signal-link" href="/report/{{message.id}}/{{id_group}}">report</a>
+                            <a class="signal-link" href="{{ path('report_message', {id_message:message.id, id_group:id_group}) }}">report</a>
                             {% endif %}
                         {% endif %}
                         {% if message.report %}
