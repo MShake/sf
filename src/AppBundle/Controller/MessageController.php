@@ -17,7 +17,7 @@ use AppBundle\Repository\MessageRepository;
 use AppBundle\Repository\ChatGroupRepository;
 
 class MessageController extends Controller{
-	
+
 	private $messages = null;
 	private $groups = null;
 	private $groupLoad = null;
@@ -25,7 +25,7 @@ class MessageController extends Controller{
 	private $groupLastMessage = null;
 	private $repoMessage = null;
 	private $repoChatGroup = null;
-	
+
     /**
      * @Route("/", name="message")
      * @Template()
@@ -33,7 +33,7 @@ class MessageController extends Controller{
     public function messageAction(Request $request){
         $message = new Message();
         $group = new ChatGroup();
-        
+
         $form = $this->createForm(CreateMessageForm::Class, $message);
         $form2 = $this->createForm(AddGroupForm::Class, $group);
 
@@ -51,7 +51,7 @@ class MessageController extends Controller{
 
         return $this->constructArrayValues($form,$form2, $user->getId());
     }
-    
+
     /**
      * @Route("/group/{id_group}", name="group")
      * @Template("AppBundle:Message:message.html.twig")
@@ -63,18 +63,18 @@ class MessageController extends Controller{
 
         $form = $this->createForm(CreateMessageForm::Class, $message);
         $form2 = $this->createForm(AddGroupForm::Class, $group);
-        
+
         $form->handleRequest($request);
         $user_id = $this->get('security.token_storage')->getToken()->getUser()->getId();
 
         if($form->isSubmitted() && $form->isValid()){
             $this->saveMessage($message, $group);
         }
-        
+
         $this->initRepo();
         $this->initGroupsAndMessages($group, $this->repoMessage, $this->repoChatGroup);
         $this->groupLoad = $group->getId();
-        
+
         return $this->constructArrayValues($form,$form2, $user_id);
     }
 
@@ -99,7 +99,7 @@ class MessageController extends Controller{
         return $this->redirect($root."group/".$group->getId());
     }
 
-    
+
     private function constructArrayValues(Form $form,Form $form2 ,$user_id){
     	return array(
     			'form' => $form->createView(),
@@ -113,15 +113,15 @@ class MessageController extends Controller{
     }
 
 
-    
+
     private function saveMessage(Message $message, ChatGroup $group){
     	$em = $this->get('doctrine')->getManager();
-    	
+
     	$message->setUser($this->getUser());
     	$message->setChatGroup($group);
     	$em->persist($message);
     	$em->flush();
-    	
+
     	$this->get('session')->getFlashBag()->add('success', 'Message ajouté');
     	return $this->redirect($this->generateUrl('group', array('id_group' => $group->getId())));
     }
@@ -142,19 +142,22 @@ class MessageController extends Controller{
     			array('chatGroup' => $group),
     			array('dateCreated' => 'asc'));
     }
-    
+
     private function initRepo(){
     	$this->repoMessage = $this->get('doctrine')->getManager()->getRepository('AppBundle:Message');
     	$this->repoChatGroup = $this->get('doctrine')->getManager()->getRepository('AppBundle:ChatGroup');
     }
-    
+
     /**
-     * @Route("/report/{id_message}", name="report_message")
+     * @Route("/report/{id_message}/{id_group}", name="report_message")
      * @Template("AppBundle:Message:test_report.html.twig")
      */
-    public function reportMessage($id_message){
+    public function reportMessage($id_message, $id_group){
         $report = $this->get("lolochat.messageservice");
         $report->add($id_message);
-        return array();
+
+		$root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+
+        return $this->redirect($root."group/".$id_group);
     }
 }

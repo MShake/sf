@@ -40,11 +40,15 @@
                         {% else %}
                             <p class="msg other {% if message.report %} report {% endif %}">
                             <span class="msg-username"> ~ {{ message.user.firstname }} {{ message.user.lastname }}</span>
+                            {% if message.report != 1 %}
+                            <a class="signal-link" href="/report/{{message.id}}/{{id_group}}">report</a>
+                            {% endif %}
                         {% endif %}
                         {% if message.report %}
-                        <span class="report-msg">/!\ Message reported</span>
+                        <span class="msg-content report-msg">/!\ Message reported</span>
                         {% else %}
-                        {{ message.content }}
+                        <span class="msg-content">{{ message.content }}</span>
+
                         {% endif %}
 
                             <span class="msg-date">{{ message.dateCreated|date('d/m/Y H:i') }}</span>

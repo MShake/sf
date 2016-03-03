@@ -21,12 +21,12 @@ class MessageService
     public function add($message_id)
     {
         $message = $this->em->getRepository('AppBundle:Message')->find($message_id);
-        
+
         $message->setReport(1);
         $this->em->flush();
          $mail = \Swift_Message::newInstance()
         ->setSubject('Message signalé sur LoloChat')
-        ->setFrom('maxime.grimler@creatails.com')
+        ->setFrom('maxime.grimle@creatails.com')
         ->setTo('kalimerre@gmail.com')
         ->setCc(array(
             'fidalgo.antoine@gmail.com' => 'Juanito de paella',
