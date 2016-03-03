@@ -167,6 +167,7 @@ class Message
     public function __construct()
     {
             $this->setDateCreated(new \DateTime());
+            $this->setReport(0);
     }
 
     /**
