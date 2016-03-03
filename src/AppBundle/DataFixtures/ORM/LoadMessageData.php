@@ -51,6 +51,8 @@ class LoadMessageData extends AbstractFixture implements OrderedFixtureInterface
 					$message->setUser ( $this->getReference ( "users3" ) );
 				}
 			}
+                        
+                        $message->setReport(0);
 			
 			$manager->persist ( $message );
 		}

@@ -1,8 +1,11 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+<div class="login-form">
+<h3>Sign Up</h3>
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
     {{ form_widget(form) }}
     <div>
-        <input type="submit" value="S'enregistrer" />
+        <input class="login-button" type="submit" value="S'enregistrer" />
     </div>
 {{ form_end(form) }}
+</div>

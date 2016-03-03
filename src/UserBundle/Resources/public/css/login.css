@@ -1,0 +1,74 @@
+body{
+    background-color:#009688;
+    background-size: cover;
+    font-family: 'Open Sans'
+}
+.login-form{
+    width:20%;
+    margin:auto;
+    background:#EEE;
+    padding:2%;
+    box-shadow: 2px 2px 2px #555;
+    border-radius:2px;
+    margin-top:50px;
+}
+
+.login-form>input{
+    display:block;
+    width:100%;
+    margin:auto;
+}
+.login-form>label{
+    display:block;
+    width:100%;
+    margin:auto;
+    text-align: center;
+    margin-top:10px;
+}
+label.check-memory{
+    display:inline;
+    width:45%;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+input.check-memory{
+    display:inline;
+    width:10%;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.login-button{
+    display:inline;
+    margin-left:2%;
+    font-size: 15pt;
+    height: 20%;
+    width:48%;
+    background:#53B97F;
+    color:white;
+}
+.login-button:hover{
+    background-color:#009688;
+    transition: 0.5s;
+    color:white;
+    cursor: pointer;
+}
+input, a{
+    display:inline-block;
+    margin-left:1%;
+    margin-top:10px;
+    margin-bottom:10px;
+    height:30px;
+    width:70%;
+    padding:5px;
+    background:white;
+    border-radius:3px;
+    border: none;
+}
+
+a.login-button{
+    right:0;
+    float:right;
+    width:30%;
+    text-align: center;
+}

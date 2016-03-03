@@ -7,7 +7,7 @@
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 
-<form action="{{ path("fos_user_security_check") }}" method="post">
+<form class="login-form" action="{{ path("fos_user_security_check") }}" method="post">
 
     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
@@ -17,9 +17,11 @@
     <label for="password">Mot de passe :</label>
     <input type="password" id="password" name="_password" required="required" />
 
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">Se souvenir de moi</label>
+    <input class="check-memory" type="checkbox" id="remember_me" name="_remember_me" value="on" />
+    <label class="check-memory" for="remember_me">Se souvenir de moi</label>
 
-    <input type="submit" id="_submit" name="_submit" value="Se connecter" />
+    <a class="login-button">SIGN UP</a>
+    <input class="login-button" type="submit" id="_submit" name="_submit" value="SIGN IN" />
+
 </form>
 {% endblock fos_user_content %}
