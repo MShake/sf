@@ -183,8 +183,23 @@ h4{
     background-color:#429465;
     transition:0.5s;
 }
-
 .active{
     background-color:#009688;
+    color:white;
+}
+.logout{
+    text-decoration:none;
+    color:black;
+    background:white;
+    float:right;
+    width:5%;
+    padding:2px;
+    border-radius:3px;
+    text-align: center;
+    font-family: 'Open Sans';
+}
+.logout:hover{
+    background:  rgb(207, 98, 98);
+    transition:0.5s;
     color:white;
 }
