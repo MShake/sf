@@ -1,0 +1,18 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/admin.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block body %}
+    
+    {% include 'AppBundle::menu.html.twig' %}
+    
+    <h1>Update group</h1>
+
+    <form action="{{ path('admin-group-edit', {id:group.id}) }}" method="post">
+        {{ form_widget(form.name) }}
+        <input type="submit" value="Update" />
+        {{ form_rest(form) }}
+    </form>
+{% endblock %}
