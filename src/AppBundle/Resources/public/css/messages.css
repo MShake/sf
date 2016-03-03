@@ -135,10 +135,7 @@ h4{
 
     max-width: 60%;
 }
-.report{
-    background-color: rgb(207, 98, 98);
-    color:white;
-}
+
 .me{
 
 	color:white;
@@ -153,6 +150,10 @@ h4{
 
     margin-left:5%;
 
+}
+.report{
+    background-color: rgb(207, 98, 98)!important;
+    color:white;
 }
 .msg-username{
     font-style: italic;
