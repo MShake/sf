@@ -223,3 +223,7 @@ h4{
     color: rgb(207, 98, 98);
     transition:0.5s;
 }
+
+.error_img{
+    width:100%;
+}
