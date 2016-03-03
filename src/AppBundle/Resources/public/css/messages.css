@@ -79,6 +79,8 @@ input{
 }
 .container-contacts{
     position: absolute;
+    overflow:auto;
+    height: 91%;
     display:block;
     width:20%;
     top:8%;
@@ -161,9 +163,14 @@ h4{
 }
 .msg-username{
     font-style: italic;
-    display: block;
+    display: inline;
     font-size:10pt;
     margin-bottom:10px;
+    width:50%;
+}
+.msg-content{
+    display:block;
+    margin-top:10px;
 }
 .msg-date{
     font-style: italic;
@@ -202,4 +209,17 @@ h4{
     background:  rgb(207, 98, 98);
     transition:0.5s;
     color:white;
+}
+.signal-link{
+    position: relative;
+    display: inline;
+    float:right;
+    right:0;
+
+    text-decoration: none;
+    color:black;
+}
+.signal-link:hover{
+    color: rgb(207, 98, 98);
+    transition:0.5s;
 }
