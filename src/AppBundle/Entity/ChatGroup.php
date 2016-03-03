@@ -30,6 +30,7 @@ class ChatGroup
     {
         $this->messages = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->setEnable(1);
     }
     
     /**
@@ -48,6 +49,12 @@ class ChatGroup
      */
     private $name;
 
+     /**
+     * @var boolean
+     * 
+     * @ORM\Column(name="enable", type="boolean", length=2)
+     */
+    private $enable;
 
     /**
      * Get id
@@ -149,5 +156,29 @@ class ChatGroup
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Set enable
+     *
+     * @param boolean $enable
+     *
+     * @return ChatGroup
+     */
+    public function setEnable($enable)
+    {
+        $this->enable = $enable;
+
+        return $this;
+    }
+
+    /**
+     * Get enable
+     *
+     * @return boolean
+     */
+    public function getEnable()
+    {
+        return $this->enable;
     }
 }

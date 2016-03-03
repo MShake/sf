@@ -53,6 +53,7 @@ class LoadMessageData extends AbstractFixture implements OrderedFixtureInterface
 			}
                         
                         $message->setReport(0);
+                        $message->setEnable(1);
 			
 			$manager->persist ( $message );
 		}

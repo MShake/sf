@@ -50,6 +50,13 @@ class Message
     private $report;
     
     /**
+     * @var boolean
+     * 
+     * @ORM\Column(name="enable", type="boolean", length=2)
+     */
+    private $enable;
+    
+    /**
      * @var datetime
      * 
      * @ORM\Column(name="dateCreated", type="datetime")
@@ -168,6 +175,7 @@ class Message
     {
             $this->setDateCreated(new \DateTime());
             $this->setReport(0);
+            $this->setEnable(1);
     }
 
     /**
@@ -192,5 +200,29 @@ class Message
     public function getReport()
     {
         return $this->report;
+    }
+
+    /**
+     * Set enable
+     *
+     * @param boolean $enable
+     *
+     * @return Message
+     */
+    public function setEnable($enable)
+    {
+        $this->enable = $enable;
+
+        return $this;
+    }
+
+    /**
+     * Get enable
+     *
+     * @return boolean
+     */
+    public function getEnable()
+    {
+        return $this->enable;
     }
 }
