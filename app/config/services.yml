@@ -6,4 +6,4 @@ parameters:
 services:
     lolochat.messageservice:
         class: AppBundle\Services\MessageService
-        arguments: [ '@doctrine.orm.entity_manager' ]
+        arguments: [ '@doctrine.orm.entity_manager', '@mailer' ]

@@ -10,10 +10,12 @@ class MessageService
 {
     
     protected $em;
+    protected $mailer;
 
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManager $em, $mailer)
     {
         $this->em = $em;
+        $this->mailer  = $mailer;
     }
     
     public function add($message_id)
@@ -22,6 +24,15 @@ class MessageService
 
         $message->setReport(1);
         $this->em->flush();
+         $mail = \Swift_Message::newInstance()
+        ->setSubject('Hello Email')
+        ->setFrom('admin@lolochat.com')
+        ->setTo('kalimerre@gmail.com')
+        ->setBody('test mail',
+            'text/html'
+        );
+        $this->mailer->send($mail);
+
     }
     
 }
