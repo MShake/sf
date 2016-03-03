@@ -34,9 +34,9 @@
                   {% if current_group != null %}
                     {% for message in messages %}
                         {% if message.user.id == user_id %}
-                            <p class="msg me">
+                            <p class="msg me {% if message.report %} report {% endif %}">
                         {% else %}
-                            <p class="msg other">
+                            <p class="msg other {% if message.report %} report {% endif %}">
                             <span class="msg-username"> ~ {{ message.user.firstname }} {{ message.user.lastname }}</span>
                         {% endif %}
 
