@@ -46,11 +46,22 @@ class MessageController extends Controller{
         $this->initRepo();
 
         $this->groupLastMessage = $this->repoMessage->findGroupLastMessageSend($user);
-
+       	
+        $groupFind = false;
         if(count($this->groupLastMessage)>0) {
-        	$this->groupLoad = $this->repoChatGroup->find($this->groupLastMessage[0]->getChatGroup()->getId());
-        	$this->initGroupsAndMessages($this->groupLoad, $this->repoMessage, $this->repoChatGroup,$this->repoUser);
-        	$this->groupLoad = $this->groupLoad->getId();
+        	//Recherche du plus récent message envoyé sur un groupe actif
+        	for($i=0; $i<count($this->groupLastMessage); $i++){
+        		$this->groupLoad = $this->repoChatGroup->find($this->groupLastMessage[$i]->getChatGroup()->getId());
+        		if($this->groupLoad->getEnable()){
+        			$groupFind = true;
+        			break;
+        		}
+        	}
+        	
+        	if($groupFind){
+        		$this->initGroupsAndMessages($this->groupLoad, $this->repoMessage, $this->repoChatGroup,$this->repoUser);
+        		$this->groupLoad = $this->groupLoad->getId();
+        	}
         }
 
         return $this->constructArrayValues($form,$form2, $user->getId());
