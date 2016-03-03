@@ -4,17 +4,20 @@ namespace AppBundle\Controller;
 
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use AppBundle\Entity\Message;
 use AppBundle\Entity\ChatGroup;
+use AppBundle\Entity\User;
 use AppBundle\Form\CreateMessageForm;
 use AppBundle\Form\AddGroupForm;
 use AppBundle\Repository\MessageRepository;
 use AppBundle\Repository\ChatGroupRepository;
+use AppBundle\Repository\UserRepository;
+use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
+
 
 class MessageController extends Controller{
 	
@@ -25,7 +28,9 @@ class MessageController extends Controller{
 	private $groupLastMessage = null;
 	private $repoMessage = null;
 	private $repoChatGroup = null;
-	
+    private $repoUser = null;
+
+
     /**
      * @Route("/", name="message")
      * @Template()
@@ -45,7 +50,7 @@ class MessageController extends Controller{
 
         if(count($this->groupLastMessage)>0) {
         	$this->groupLoad = $this->repoChatGroup->find($this->groupLastMessage[0]->getChatGroup()->getId());
-        	$this->initGroupsAndMessages($this->groupLoad, $this->repoMessage, $this->repoChatGroup);
+        	$this->initGroupsAndMessages($this->groupLoad, $this->repoMessage, $this->repoChatGroup,$this->repoUser);
         	$this->groupLoad = $this->groupLoad->getId();
         }
 
@@ -60,7 +65,6 @@ class MessageController extends Controller{
     public function groupAction(Request $request, ChatGroup $group){
         $message = new Message();
 
-
         $form = $this->createForm(CreateMessageForm::Class, $message);
         $form2 = $this->createForm(AddGroupForm::Class, $group);
         
@@ -72,7 +76,7 @@ class MessageController extends Controller{
         }
         
         $this->initRepo();
-        $this->initGroupsAndMessages($group, $this->repoMessage, $this->repoChatGroup);
+        $this->initGroupsAndMessages($group, $this->repoMessage, $this->repoChatGroup,$this->repoUser);
         $this->groupLoad = $group->getId();
         
         return $this->constructArrayValues($form,$form2, $user_id);
@@ -91,7 +95,7 @@ class MessageController extends Controller{
 
         $form2->handleRequest($request);
 
-       if($form2->isSubmitted() && $form2->isValid()){
+        if($form2->isSubmitted() && $form2->isValid()){
             $this->saveChatGroup($group);
         }
         $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
@@ -112,11 +116,8 @@ class MessageController extends Controller{
     	);
     }
 
-
-    
     private function saveMessage(Message $message, ChatGroup $group){
     	$em = $this->get('doctrine')->getManager();
-    	
     	$message->setUser($this->getUser());
     	$message->setChatGroup($group);
     	$em->persist($message);
@@ -135,8 +136,10 @@ class MessageController extends Controller{
     }
 
 
-    private function initGroupsAndMessages(ChatGroup $group, MessageRepository $repoMessage, ChatGroupRepository $repoChatGroup){
-    	$this->groups = $repoChatGroup->findAll();
+    private function initGroupsAndMessages(ChatGroup $group, MessageRepository $repoMessage, ChatGroupRepository $repoChatGroup,UserRepository $repoUser){
+
+        $user = $repoUser->find($this->getUser()->getId());
+        $this->groups = $user->getChatGroups();
     	$this->current_group = $repoChatGroup->find($group->getId());
     	$this->messages = $repoMessage->findBy(
     			array('chatGroup' => $group),
@@ -146,6 +149,7 @@ class MessageController extends Controller{
     private function initRepo(){
     	$this->repoMessage = $this->get('doctrine')->getManager()->getRepository('AppBundle:Message');
     	$this->repoChatGroup = $this->get('doctrine')->getManager()->getRepository('AppBundle:ChatGroup');
+        $this->repoUser = $this->get('doctrine')->getManager()->getRepository('AppBundle:User');
     }
     
     /**

@@ -15,10 +15,7 @@ class MessageRepository extends EntityRepository
 {
     public function findGroupLastMessageSend($user)
     {
-
-
         $qb = $this->createQueryBuilder('m');
-
         $qb->where('m.user = :user')
             ->setParameter('user',$user)
             ->orderBy('m.dateCreated','DESC');

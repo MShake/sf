@@ -158,7 +158,7 @@ class User extends BaseUser
      */
     public function addChatGroup(\AppBundle\Entity\ChatGroup $chatGroup)
     {
-        $this->ChatGroups[] = $chatGroup;
+        $this->chatGroups[] = $chatGroup;
 
         return $this;
     }
@@ -170,7 +170,7 @@ class User extends BaseUser
      */
     public function removeChatGroup(\AppBundle\Entity\ChatGroup $chatGroup)
     {
-        $this->ChatGroups->removeElement($chatGroup);
+        $this->chatGroups->removeElement($chatGroup);
     }
 
     /**
@@ -180,6 +180,6 @@ class User extends BaseUser
      */
     public function getChatGroups()
     {
-        return $this->ChatGroups;
+        return $this->chatGroups;
     }
 }
