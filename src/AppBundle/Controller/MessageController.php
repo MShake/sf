@@ -150,11 +150,11 @@ class MessageController extends Controller{
     
     /**
      * @Route("/report/{id_message}", name="report_message")
-     * @Template()
+     * @Template("AppBundle:Message:test_report.html.twig")
      */
     public function reportMessage($id_message){
         $report = $this->get("lolochat.messageservice");
         $report->add($id_message);
-        return new Response("Reported");
+        return array();
     }
 }
