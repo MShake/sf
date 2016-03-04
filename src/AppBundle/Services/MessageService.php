@@ -2,7 +2,6 @@
 
 namespace AppBundle\Services;
 
-use AppBundle\Entity\Message;
 use Doctrine\ORM\EntityManager;
 
 class MessageService

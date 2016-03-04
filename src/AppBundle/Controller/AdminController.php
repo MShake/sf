@@ -6,8 +6,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use AppBundle\Entity\Message;
-use AppBundle\Entity\ChatGroup;
 use AppBundle\Form\EditMessageForm;
 use AppBundle\Form\EditGroupForm;
 
