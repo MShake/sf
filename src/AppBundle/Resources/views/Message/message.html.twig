@@ -22,10 +22,7 @@
                   {% for group in groups %}
                     {% if group.enable %}
                         <a class="contact {% if group.id == current_group.id %} active {% endif %}" href="{{ path('group', {id_group:group.id}) }}">
-
-
                             {{ group.name }}
-
                         </a>
                     {% endif %}
                   {% endfor %}
