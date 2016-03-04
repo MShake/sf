@@ -96,6 +96,17 @@ class MessageController extends Controller{
 
         $this->initRepo();
         $this->initGroupsAndMessages($group, $this->repoMessage, $this->repoChatGroup,$this->repoUser);
+
+        $form3->handleRequest($request);
+
+        if($form3->isSubmitted() && $form3->isValid())
+        {
+            $this->userAll = $this->repoUser->findNotInThisGroupAndUserLike($group,$user);
+
+        }else{
+            $this->userAll = $this->repoUser->findNotInThisGroup($group);
+        }
+
         $this->groupLoad = $group->getId();
 
         return $this->constructArrayValues($form,$form2,$form3, $user_id);
@@ -163,8 +174,6 @@ class MessageController extends Controller{
     	$this->messages = $repoMessage->findBy(
     			array('chatGroup' => $group),
     			array('dateCreated' => 'asc'));
-        $this->userAll = $repoUser->findNotInThisGroup($group);
-
     }
 
     private function initRepo(){

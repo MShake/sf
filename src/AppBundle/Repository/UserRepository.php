@@ -33,4 +33,29 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getResult();
     }
+
+    public function findNotInThisGroupAndUserLike(ChatGroup $group,User $user)
+    {
+
+        $subQb = $this->createQueryBuilder('u');
+        $subQuery = $subQb
+            ->select(['u.id'])
+            ->innerJoin('u.chatGroups','c','WITH','c = :group')
+            ->setParameter('group',$group)
+            ->getQuery()
+            ->getArrayResult();
+
+        $qb = $this->createQueryBuilder('u');
+        $query = $qb
+            ->where($qb->expr()->notIn('u',':subQuery'))
+            ->setParameter('subQuery',$subQuery)
+            ->andWhere('LOWER(u.firstname) LIKE LOWER(:firstname)')
+            ->setParameter('firstname','%'.$user->getFirstname().'%')
+            ->getQuery();
+
+
+        return $query->getResult();
+    }
+
+
 }

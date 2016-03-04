@@ -76,7 +76,7 @@
 
           <div class="contacts-box">
               <div class="header-contacts">
-                  <form action="{{ path('groupAdd') }}" method="post" id="adduserform">
+                  <form action="{{ path('group', {id_group:current_group.id}) }}" method="post" id="adduserform">
                       {{ form_widget(form3.firstname) }}
                       {{ form_rest(form3) }}
                   </form>
