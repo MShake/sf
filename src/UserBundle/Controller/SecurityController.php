@@ -14,13 +14,11 @@ class SecurityController extends BaseController
 
     public function loginAction(Request $request)
     {
-        if($this->getUser())
-        {
+        if ($this->getUser()) {
             // redirect authenticated users to homepage
             return $this->redirect($this->generateUrl('message'));
         }
+
         return parent::loginAction($request);
     }
-
-
 }

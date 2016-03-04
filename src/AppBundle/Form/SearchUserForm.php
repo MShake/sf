@@ -15,16 +15,15 @@ class SearchUserForm extends AbstractType
                     'placeholder' => 'Ajouter utilisateur',
                 )));
     }
-    
+
     public function getName()
     {
         return 'addgroupform';
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {    
+    {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\User',
             ));
     }
-
 }

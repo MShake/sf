@@ -15,16 +15,15 @@ class AddGroupForm extends AbstractType
                     'placeholder' => 'Nom du groupe',
                 )));
     }
-    
+
     public function getName()
     {
         return 'addgroupform';
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {    
+    {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\ChatGroup',
             ));
     }
-
 }

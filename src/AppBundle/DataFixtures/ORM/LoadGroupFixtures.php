@@ -4,8 +4,9 @@
  * Created by PhpStorm.
  * User: lionel
  * Date: 01/03/2016
- * Time: 18:33
+ * Time: 18:33.
  */
+
 namespace AppBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -14,41 +15,42 @@ use AppBundle\Entity\ChatGroup;
 use AppBundle\Entity\User;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 
-class LoadGroupFixtures extends AbstractFixture implements OrderedFixtureInterface {
+class LoadGroupFixtures extends AbstractFixture implements OrderedFixtureInterface
+{
+    public function load(ObjectManager $manager)
+    {
+        $groupnames = array(
+                'Potes',
+                'ESGI',
+        );
 
-	function load(ObjectManager $manager) {
+        $i = 0;
 
-		$groupnames = array (
-				'Potes',
-				'ESGI',
-		);
+        while ($i < 2) {
+            $chatGroup = new ChatGroup();
+            $chatGroup->setName($groupnames[$i]);
 
-		$i = 0;
+            if ($i == 0) {
+                $chatGroup->addUser($this->getReference('users0'));
+                $chatGroup->addUser($this->getReference('users1'));
+                $chatGroup->addUser($this->getReference('users2'));
+            } else {
+                $chatGroup->addUser($this->getReference('users0'));
+                $chatGroup->addUser($this->getReference('users3'));
+            }
 
-		while ( $i < 2 ) {
-			$chatGroup = new ChatGroup ();
-			$chatGroup->setName ($groupnames[$i]);
+            $this->addReference('groups'.$i, $chatGroup);
+            $manager->persist($chatGroup);
+            ++$i;
+        }
+        $chatGroup->setEnable(true);
+        $manager->flush();
+    }
 
-			if ($i == 0) {
-				$chatGroup->addUser ( $this->getReference ( "users0" ) );
-				$chatGroup->addUser ( $this->getReference ( "users1" ) );
-				$chatGroup->addUser ( $this->getReference ( "users2" ) );
-			} else {
-				$chatGroup->addUser ( $this->getReference ( "users0" ) );
-				$chatGroup->addUser ( $this->getReference ( "users3" ) );
-			}
-
-			$this->addReference ( 'groups' . $i, $chatGroup );
-			$manager->persist ( $chatGroup );
-			$i ++;
-		}
-                $chatGroup->setEnable(true);
-		$manager->flush ();
-	}
-
-	public function getOrder() {
-		// the order in which fixtures will be loaded
-		// the lower the number, the sooner that this fixture is loaded
-		return 2;
-	}
+    public function getOrder()
+    {
+        // the order in which fixtures will be loaded
+        // the lower the number, the sooner that this fixture is loaded
+        return 2;
+    }
 }

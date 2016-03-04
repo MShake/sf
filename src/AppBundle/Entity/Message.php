@@ -5,27 +5,25 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Message
+ * Message.
  *
  * @ORM\Table(name="message")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MessageRepository")
  */
 class Message
 {
-	
-            
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="messages")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
-	
-     /**
+
+    /**
      * @ORM\ManyToOne(targetEntity="ChatGroup", inversedBy="messages")
      * @ORM\JoinColumn(name="chat_group_id", referencedColumnName="id")
      */
     protected $chatGroup;
-    
+
     /**
      * @var int
      *
@@ -34,28 +32,28 @@ class Message
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @var string
      * 
      * @ORM\Column(name="content", type="string", length=255)
      */
     private $content;
-    
+
     /**
-     * @var boolean
+     * @var bool
      * 
      * @ORM\Column(name="report", type="boolean", length=2)
      */
     private $report;
-    
+
     /**
-     * @var boolean
+     * @var bool
      * 
      * @ORM\Column(name="enable", type="boolean", length=2)
      */
     private $enable;
-    
+
     /**
      * @var datetime
      * 
@@ -63,9 +61,8 @@ class Message
      */
     private $dateCreated;
 
-
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -75,7 +72,7 @@ class Message
     }
 
     /**
-     * Set content
+     * Set content.
      *
      * @param string $content
      *
@@ -89,7 +86,7 @@ class Message
     }
 
     /**
-     * Get content
+     * Get content.
      *
      * @return string
      */
@@ -99,7 +96,7 @@ class Message
     }
 
     /**
-     * Set dateCreated
+     * Set dateCreated.
      *
      * @param \DateTime $dateCreated
      *
@@ -113,7 +110,7 @@ class Message
     }
 
     /**
-     * Get dateCreated
+     * Get dateCreated.
      *
      * @return \DateTime
      */
@@ -123,7 +120,7 @@ class Message
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \AppBundle\Entity\User $user
      *
@@ -137,7 +134,7 @@ class Message
     }
 
     /**
-     * Get user
+     * Get user.
      *
      * @return \AppBundle\Entity\User
      */
@@ -147,7 +144,7 @@ class Message
     }
 
     /**
-     * Set chatGroup
+     * Set chatGroup.
      *
      * @param \AppBundle\Entity\ChatGroup $chatGroup
      *
@@ -161,7 +158,7 @@ class Message
     }
 
     /**
-     * Get chatGroup
+     * Get chatGroup.
      *
      * @return \AppBundle\Entity\ChatGroup
      */
@@ -169,19 +166,18 @@ class Message
     {
         return $this->chatGroup;
     }
-    
-    
+
     public function __construct()
     {
-            $this->setDateCreated(new \DateTime());
-            $this->setReport(false);
-            $this->setEnable(true);
+        $this->setDateCreated(new \DateTime());
+        $this->setReport(false);
+        $this->setEnable(true);
     }
 
     /**
-     * Set report
+     * Set report.
      *
-     * @param boolean $report
+     * @param bool $report
      *
      * @return Message
      */
@@ -193,9 +189,9 @@ class Message
     }
 
     /**
-     * Get report
+     * Get report.
      *
-     * @return boolean
+     * @return bool
      */
     public function getReport()
     {
@@ -203,9 +199,9 @@ class Message
     }
 
     /**
-     * Set enable
+     * Set enable.
      *
-     * @param boolean $enable
+     * @param bool $enable
      *
      * @return Message
      */
@@ -217,9 +213,9 @@ class Message
     }
 
     /**
-     * Get enable
+     * Get enable.
      *
-     * @return boolean
+     * @return bool
      */
     public function getEnable()
     {

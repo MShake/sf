@@ -4,7 +4,7 @@
  * Created by PhpStorm.
  * User: lionel
  * Date: 02/03/2016
- * Time: 12:47
+ * Time: 12:47.
  */
 
 namespace UserBundle\EventListener;
@@ -15,18 +15,17 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-
 class RegistrationConfirmListener implements EventSubscriberInterface
 {
     private $router;
 
     public function __construct(UrlGeneratorInterface $router)
     {
-        $this->router =$router;
+        $this->router = $router;
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public static function getSubscribedEvents()
     {

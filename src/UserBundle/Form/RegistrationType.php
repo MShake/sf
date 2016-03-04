@@ -3,9 +3,8 @@
  * Created by PhpStorm.
  * User: lionel
  * Date: 02/03/2016
- * Time: 12:26
+ * Time: 12:26.
  */
-
 
 namespace UserBundle\Form;
 
@@ -23,7 +22,6 @@ class RegistrationType extends AbstractType
     public function getParent()
     {
         return 'FOS\UserBundle\Form\Type\RegistrationFormType';
-
     }
 
     public function getBlockPrefix()

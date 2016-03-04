@@ -15,16 +15,15 @@ class CreateMessageForm extends AbstractType
                     'placeholder' => 'Taper votre message',
                 )));
     }
-    
+
     public function getName()
     {
-        return 'createmessageform'; 
+        return 'createmessageform';
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {    
+    {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Message',
             ));
     }
-
 }

@@ -2,14 +2,13 @@
 
 namespace AppBundle\Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * ChatGroup
+ * ChatGroup.
  *
  * @ORM\Table(name="chat_group")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ChatGroupRepository")
@@ -17,26 +16,24 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class ChatGroup
 {
-    
-     /**
+    /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", inversedBy="chatGroups")
      * @ORM\JoinTable(name="user_chat_group")
      */
     protected $users;
-    
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Message", mappedBy="chatGroup")
      */
     protected $messages;
-    
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->setEnable(true);
     }
-    
+
     /**
      * @var int
      *
@@ -45,7 +42,7 @@ class ChatGroup
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @var string
      * 
@@ -54,15 +51,15 @@ class ChatGroup
      */
     private $name;
 
-     /**
-     * @var boolean
+    /**
+     * @var bool
      * 
      * @ORM\Column(name="enable", type="boolean", length=2)
      */
     private $enable;
 
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -72,7 +69,7 @@ class ChatGroup
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -86,7 +83,7 @@ class ChatGroup
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -96,7 +93,7 @@ class ChatGroup
     }
 
     /**
-     * Add message
+     * Add message.
      *
      * @param \AppBundle\Entity\Message $message
      *
@@ -110,7 +107,7 @@ class ChatGroup
     }
 
     /**
-     * Remove message
+     * Remove message.
      *
      * @param \AppBundle\Entity\Message $message
      */
@@ -120,7 +117,7 @@ class ChatGroup
     }
 
     /**
-     * Get messages
+     * Get messages.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -130,7 +127,7 @@ class ChatGroup
     }
 
     /**
-     * Add user
+     * Add user.
      *
      * @param \AppBundle\Entity\User $user
      *
@@ -144,7 +141,7 @@ class ChatGroup
     }
 
     /**
-     * Remove user
+     * Remove user.
      *
      * @param \AppBundle\Entity\User $user
      */
@@ -154,7 +151,7 @@ class ChatGroup
     }
 
     /**
-     * Get users
+     * Get users.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -164,9 +161,9 @@ class ChatGroup
     }
 
     /**
-     * Set enable
+     * Set enable.
      *
-     * @param boolean $enable
+     * @param bool $enable
      *
      * @return ChatGroup
      */
@@ -178,9 +175,9 @@ class ChatGroup
     }
 
     /**
-     * Get enable
+     * Get enable.
      *
-     * @return boolean
+     * @return bool
      */
     public function getEnable()
     {

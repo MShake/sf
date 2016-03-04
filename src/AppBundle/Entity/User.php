@@ -7,14 +7,13 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 
 /**
- * User
+ * User.
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
 class User extends BaseUser
 {
-
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\ChatGroup", mappedBy="users")
      */
@@ -50,14 +49,14 @@ class User extends BaseUser
 
     public function __construct()
     {
-    	parent::__construct();
-    	$this->messages = new ArrayCollection();
+        parent::__construct();
+        $this->messages = new ArrayCollection();
         $this->groups = new ArrayCollection();
         $this->roles = array('ROLE_USER');
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -67,7 +66,7 @@ class User extends BaseUser
     }
 
     /**
-     * Set firstname
+     * Set firstname.
      *
      * @param string $firstname
      *
@@ -81,7 +80,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get firstname
+     * Get firstname.
      *
      * @return string
      */
@@ -91,7 +90,7 @@ class User extends BaseUser
     }
 
     /**
-     * Set lastname
+     * Set lastname.
      *
      * @param string $lastname
      *
@@ -105,7 +104,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get lastname
+     * Get lastname.
      *
      * @return string
      */
@@ -114,9 +113,8 @@ class User extends BaseUser
         return $this->lastname;
     }
 
-
     /**
-     * Add message
+     * Add message.
      *
      * @param \AppBundle\Entity\Message $message
      *
@@ -130,7 +128,7 @@ class User extends BaseUser
     }
 
     /**
-     * Remove message
+     * Remove message.
      *
      * @param \AppBundle\Entity\Message $message
      */
@@ -140,7 +138,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get messages
+     * Get messages.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -150,7 +148,7 @@ class User extends BaseUser
     }
 
     /**
-     * Add chatGroup
+     * Add chatGroup.
      *
      * @param \AppBundle\Entity\ChatGroup $chatGroup
      *
@@ -164,7 +162,7 @@ class User extends BaseUser
     }
 
     /**
-     * Remove chatGroup
+     * Remove chatGroup.
      *
      * @param \AppBundle\Entity\ChatGroup $chatGroup
      */
@@ -174,7 +172,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get chatGroups
+     * Get chatGroups.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
