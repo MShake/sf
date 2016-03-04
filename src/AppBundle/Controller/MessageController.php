@@ -29,6 +29,7 @@ class MessageController extends Controller{
 	private $repoMessage = null;
 	private $repoChatGroup = null;
     private $repoUser = null;
+    private $userAll = null;
 
     /**
      * @Route("/", name="message")
@@ -115,6 +116,7 @@ class MessageController extends Controller{
 
 
     private function constructArrayValues(Form $form,Form $form2 ,$user_id){
+
     	return array(
     			'form' => $form->createView(),
                 'form2' => $form2->createView(),
@@ -122,7 +124,8 @@ class MessageController extends Controller{
     			'messages' => $this->messages,
     			'id_group' => $this->groupLoad,
     			'current_group' => $this->current_group,
-    			'user_id' => $user_id
+    			'user_id' => $user_id,
+                'userAll' => $this->userAll
     	);
     }
 
@@ -154,6 +157,8 @@ class MessageController extends Controller{
     	$this->messages = $repoMessage->findBy(
     			array('chatGroup' => $group),
     			array('dateCreated' => 'asc'));
+        $this->userAll = $repoUser->findNotInThisGroup($group);
+
     }
 
     private function initRepo(){
@@ -174,4 +179,27 @@ class MessageController extends Controller{
 
         return $this->redirect($root."group/".$id_group);
     }
+
+    /**
+     * @Route("/adduser/{id_group}/{id_user}", name="addUser")
+     * @Template("AppBundle:Message:test_report.html.twig")
+     * @ParamConverter("group", class="AppBundle:ChatGroup", options={"id" = "id_group"})
+     * @ParamConverter("user", class="AppBundle:User", options={"id" = "id_user"})
+     */
+    public function addUserInGroupAction(User $user,ChatGroup $group){
+        $this->initRepo();
+
+        $em = $this->get('doctrine')->getManager();
+
+        $group->addUser($user);
+        $em->persist($group);
+        $em->flush();
+
+        $this->get('session')->getFlashBag()->add('success', 'User  ajouté au Groupe');
+
+        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
+
+        return $this->redirect($root."group/".$group->getId());
+    }
+
 }

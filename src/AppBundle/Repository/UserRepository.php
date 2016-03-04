@@ -1,6 +1,8 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Entity\ChatGroup;
+use AppBundle\Entity\User;
 
 /**
  * UserRepository
@@ -18,5 +20,16 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             ->add('from','Post p')
             ->getFirstResult();
 
+    }
+
+    public function findNotInThisGroup(ChatGroup $group)
+    {
+
+        $qb = $this->createQueryBuilder('u');
+        $qb
+            ->join('u.chatGroups','c')
+            ->where('c != :group')
+            ->setParameter('group',$group);
+        return $qb->getQuery()->getResult();
     }
 }

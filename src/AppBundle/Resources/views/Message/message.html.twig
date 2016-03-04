@@ -22,10 +22,7 @@
                   {% for group in groups %}
                     {% if group.enable %}
                         <a class="contact {% if group.id == current_group.id %} active {% endif %}" href="{{ path('group', {id_group:group.id}) }}">
-
-
                             {{ group.name }}
-
                         </a>
                     {% endif %}
                   {% endfor %}
@@ -74,7 +71,22 @@
                 <!--<input type="text" name="name" value="" placeholder="Taper un message">-->
               </div>
 
+
       </div>
+          <div class="contacts-box">
+              <div class="header-contacts">
+                  Ajouter User
+                  <form action="{{ path('groupAdd') }}" method="post" id="addgroupform">
+                      {{ form_widget(form2.name) }}
+                      {{ form_rest(form2) }}
+                  </form>
+              </div>
+              <div class="container-contacts">
+                  {% for user in userAll %}
+                             <div class="user"> <a href="{{ path('addUser', {id_group:id_group,id_user:user.id}) }}">{{ user.firstname }} </a></div><br>
+                  {% endfor %}
+              </div>
+          </div>
     <script>
                 var objDiv = document.getElementById("divExample");
                 objDiv.scrollTop = objDiv.scrollHeight;
