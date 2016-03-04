@@ -10,6 +10,7 @@ use AppBundle\Entity\ChatGroup;
 use AppBundle\Entity\User;
 use AppBundle\Form\CreateMessageForm;
 use AppBundle\Form\AddGroupForm;
+use AppBundle\Form\SearchUserForm;
 use AppBundle\Repository\MessageRepository;
 use AppBundle\Repository\ChatGroupRepository;
 use AppBundle\Repository\UserRepository;
@@ -38,9 +39,12 @@ class MessageController extends Controller{
     public function messageAction(Request $request){
         $message = new Message();
         $group = new ChatGroup();
+        $user = new User;
 
         $form = $this->createForm(CreateMessageForm::Class, $message);
         $form2 = $this->createForm(AddGroupForm::Class, $group);
+        $form3 = $this->createForm(SearchUserForm::Class, $user);
+
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -65,7 +69,7 @@ class MessageController extends Controller{
         	}
         }
 
-        return $this->constructArrayValues($form,$form2, $user->getId());
+        return $this->constructArrayValues($form,$form2,$form3 ,$user->getId());
     }
 
     /**
@@ -75,9 +79,13 @@ class MessageController extends Controller{
      */
     public function groupAction(Request $request, ChatGroup $group){
         $message = new Message();
+        $user = new User;
+
 
         $form = $this->createForm(CreateMessageForm::Class, $message);
         $form2 = $this->createForm(AddGroupForm::Class, $group);
+        $form3 = $this->createForm(SearchUserForm::Class, $user);
+
 
         $form->handleRequest($request);
         $user_id = $this->get('security.token_storage')->getToken()->getUser()->getId();
@@ -90,7 +98,7 @@ class MessageController extends Controller{
         $this->initGroupsAndMessages($group, $this->repoMessage, $this->repoChatGroup,$this->repoUser);
         $this->groupLoad = $group->getId();
 
-        return $this->constructArrayValues($form,$form2, $user_id);
+        return $this->constructArrayValues($form,$form2,$form3, $user_id);
     }
 
     /**
@@ -113,11 +121,12 @@ class MessageController extends Controller{
     }
 
 
-    private function constructArrayValues(Form $form,Form $form2 ,$user_id){
+    private function constructArrayValues(Form $form,Form $form2 ,Form $form3,$user_id){
 
     	return array(
     			'form' => $form->createView(),
                 'form2' => $form2->createView(),
+                'form3' => $form3->createView(),
     			'groups' => $this->groups,
     			'messages' => $this->messages,
     			'id_group' => $this->groupLoad,
