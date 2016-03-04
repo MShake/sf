@@ -6,18 +6,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use AppBundle\Entity\Message;
-use AppBundle\Entity\ChatGroup;
 use AppBundle\Form\EditMessageForm;
 use AppBundle\Form\EditGroupForm;
-use AppBundle\Repository\UserRepository;
-use AppBundle\Repository\MessageRepository;
-use AppBundle\Repository\ChatGroupRepository;
 
 class AdminController extends Controller{
 	
-	private $repoUser;
 	private $repoMessage;
 	private $repoChatGroup;
 	
@@ -129,7 +122,6 @@ class AdminController extends Controller{
 	}
 	
 	private function initRepo(){
-		$this->repoUser = $this->get('doctrine')->getManager()->getRepository('AppBundle:User');
 		$this->repoMessage = $this->get('doctrine')->getManager()->getRepository('AppBundle:Message');
 		$this->repoChatGroup = $this->get('doctrine')->getManager()->getRepository('AppBundle:ChatGroup');
 	}
