@@ -184,9 +184,9 @@ class MessageController extends Controller
      * @Route("/report/{id_message}/{id_group}", name="report_message")
      * @Template("AppBundle:Message:test_report.html.twig")
      */
-
-    public function reportMessageAction($id_message, $id_group){
-        $report = $this->get("lolochat.messageservice");
+    public function reportMessageAction($id_message, $id_group)
+    {
+        $report = $this->get('lolochat.messageservice');
         $report->add($id_message);
 
         return $this->redirect($this->generateUrl('group', array('id_group' => $id_group)));
