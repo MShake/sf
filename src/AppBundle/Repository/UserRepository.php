@@ -13,23 +13,24 @@ use AppBundle\Entity\User;
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function findAlltest()
-    {
-        return $this->getEntityManager()->createQueryBuilder()
-            ->add('select','p')
-            ->add('from','Post p')
-            ->getFirstResult();
-
-    }
-
     public function findNotInThisGroup(ChatGroup $group)
     {
 
+        $subQb = $this->createQueryBuilder('u');
+        $subQuery = $subQb
+            ->select(['u.id'])
+            ->innerJoin('u.chatGroups','c','WITH','c = :group')
+            ->setParameter('group',$group)
+            ->getQuery()
+            ->getArrayResult();
+
         $qb = $this->createQueryBuilder('u');
-        $qb
-            ->join('u.chatGroups','c')
-            ->where('c != :group')
-            ->setParameter('group',$group);
-        return $qb->getQuery()->getResult();
+        $query = $qb
+            ->where($qb->expr()->notIn('u',':subQuery'))
+            ->setParameter('subQuery',$subQuery)
+            ->getQuery();
+
+
+        return $query->getResult();
     }
 }
