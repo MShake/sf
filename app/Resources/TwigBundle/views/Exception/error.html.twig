@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
+{% extends 'AppBundle::layout.html.twig' %}
+{% block stylesheets %}
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ asset('bundles/app/css/messages.css') }}" type="text/css" media="all" />
-  </head>
-  <body>
+{% endblock %}
+
+{% block body %}
       <div class="container">
 
           <div class="contacts-box">
@@ -41,17 +39,29 @@
               <div class="write-box">
                   
               </div>
-
+            
       </div>
+          <div class="contacts-box">
+              
+              <div class="container-contacts">
+                <center>Powered by <br><img src="http://www.cap-collectif.com/wp-content/uploads/2014/06/jolicode2-300x300.png" class="error_img" /></center>
+              </div>
+          </div>
+      </div>
+          
+          
+{% endblock %}
+
+
+{% block javascripts %}
     <script>
-                var objDiv = document.getElementById("divExample");
-                objDiv.scrollTop = objDiv.scrollHeight;
+        var objDiv = document.getElementById("divExample");
+        objDiv.scrollTop = objDiv.scrollHeight;
 
-                var form = document.getElementById("addgroupform");
+        var form = document.getElementById("addgroupform");
 
-                document.getElementById("addbuttongroup").addEventListener("click", function () {
-                    form.submit();
-                });
-        </script>
-  </body>
-</html>
+        document.getElementById("addbuttongroup").addEventListener("click", function () {
+            form.submit();
+        });
+    </script>
+{% endblock %}
