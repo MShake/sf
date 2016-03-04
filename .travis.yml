@@ -1,12 +1,12 @@
 language: php
 php:
-  - '5.4'
   - '5.5'
   - '5.6'
   - '7.0'
   - hhvm
 
 before_script:
+  - mysql -e 'create database lolochat;'
   - cp app/config/parameters.yml.travis app/config/parameters.yml
   - composer install
   - php bin/console doctrine:database:create
