@@ -1,8 +1,11 @@
 [![Build Status](https://travis-ci.org/MShake/sf.svg?branch=master)](https://travis-ci.org/MShake/sf)
+<br />
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/d7a3b222-449e-4bb1-8c3a-b58d29aeef7a/big.png)](https://insight.sensiolabs.com/projects/d7a3b222-449e-4bb1-8c3a-b58d29aeef7a)
+<br />
 lolochat
 ========
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/d7a3b222-449e-4bb1-8c3a-b58d29aeef7a/big.png)](https://insight.sensiolabs.com/projects/d7a3b222-449e-4bb1-8c3a-b58d29aeef7a)
-<br /><br />
+
+
 
 A Symfony project created on March 1, 2016, 2:12 pm.<br /><br />
 <b>Project created by © Grimlou, Juanito, Panini, Lolofeuj</b><br /><br />
