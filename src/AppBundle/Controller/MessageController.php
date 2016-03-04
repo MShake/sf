@@ -117,13 +117,13 @@ class MessageController extends Controller{
 
     	return array(
     			'form' => $form->createView(),
-                'form2' => $form2->createView(),
+                        'form2' => $form2->createView(),
     			'groups' => $this->groups,
     			'messages' => $this->messages,
     			'id_group' => $this->groupLoad,
     			'current_group' => $this->current_group,
     			'user_id' => $user_id,
-                'userAll' => $this->userAll
+                        'userAll' => $this->userAll
     	);
     }
 
@@ -134,7 +134,6 @@ class MessageController extends Controller{
     	$em->persist($message);
     	$em->flush();
 
-    	$this->get('session')->getFlashBag()->add('success', 'Message ajouté');
     	return $this->redirect($this->generateUrl('group', array('id_group' => $group->getId())));
     }
 
@@ -143,7 +142,6 @@ class MessageController extends Controller{
         $chatGroup->addUser($this->getUser());
         $em->persist($chatGroup);
         $em->flush();
-        $this->get('session')->getFlashBag()->add('success', 'Groupe ajouté');
     }
 
 
@@ -193,9 +191,7 @@ class MessageController extends Controller{
 
         $this->get('session')->getFlashBag()->add('success', 'User  ajouté au Groupe');
 
-        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
-
-        return $this->redirect($root."group/".$group->getId());
+        return $this->redirect($this->generateUrl('group', array('id_group' => $group->getId())));
     }
 
 }
