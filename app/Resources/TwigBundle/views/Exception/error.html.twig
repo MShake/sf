@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/messages.css') }}" type="text/css" media="all" />
+  </head>
+  <body>
+      <div class="container">
+
+          <div class="contacts-box">
+              
+              <div class="container-contacts">
+                <center><img src="http://homer-simpson.eu/wp-content/uploads/2015/05/homer-simpson-doh-reyboz-blog.png" class="error_img" /></center>
+              </div>
+          </div>
+          <div class="messages-box">
+              <div class="header-box">
+                  <h3><strong> {{ status_code }}</strong> ({{ status_text }})</h3>
+              </div>
+              <div class="content-box" id="divExample">
+                  <p class="msg other">
+                      Tu as tout cassé !!
+                  </p>
+                  <p class="msg me">
+                      Mais j'ai pas fais exprès :'(<br>
+                      Tu peux me dire comment on corrige s'il te plait ?
+                  </p>
+                  <p class="msg other">
+                      Bon d'accord mais à condition que tu recommences plus ?<br>
+                  </p>
+                  <p class="msg me">
+                      Promis j'arrête de vouloir essayer de casser LoloChat <3
+                  </p>
+                  <p class="msg other">
+                      Allez tiens je t'aide à retrouver ton chemin <br>
+                       <a href="{{ path('message') }}">Retourne à la page d'accueil c'est plus safe</a>.
+                  </p>
+              </div>
+              <div class="write-box">
+                  
+              </div>
+
+      </div>
+    <script>
+                var objDiv = document.getElementById("divExample");
+                objDiv.scrollTop = objDiv.scrollHeight;
+
+                var form = document.getElementById("addgroupform");
+
+                document.getElementById("addbuttongroup").addEventListener("click", function () {
+                    form.submit();
+                });
+        </script>
+  </body>
+</html>

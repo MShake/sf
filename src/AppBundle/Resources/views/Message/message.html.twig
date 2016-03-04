@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block stylesheets %}
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ asset('bundles/app/css/messages.css') }}" type="text/css" media="all" />
-  </head>
-  <body>
+{% endblock %}
+
+{% block body %}
       <div class="container">
           <a class="logout" href="{{path('fos_user_security_logout')}}">logout</a>
 
@@ -35,24 +34,26 @@
               <div class="content-box" id="divExample">
                   {% if current_group != null %}
                     {% for message in messages %}
-                        {% if message.user.id == user_id %}
-                            <p class="msg me {% if message.report %} report {% endif %}">
-                        {% else %}
-                            <p class="msg other {% if message.report %} report {% endif %}">
-                            <span class="msg-username"> ~ {{ message.user.firstname }} {{ message.user.lastname }}</span>
-                            {% if message.report != 1 %}
-                            <a class="signal-link" href="{{ path('report_message', {id_message:message.id, id_group:id_group}) }}">report</a>
+                        {% if message.enable %}
+                            {% if message.user.id == user_id %}
+                                <p class="msg me {% if message.report %} report {% endif %}">
+                            {% else %}
+                                <p class="msg other {% if message.report %} report {% endif %}">
+                                <span class="msg-username"> ~ {{ message.user.firstname }} {{ message.user.lastname }}</span>
+                                {% if message.report != 1 %}
+                                <a class="signal-link" href="{{ path('report_message', {id_message:message.id, id_group:id_group}) }}">report</a>
+                                {% endif %}
                             {% endif %}
+                            {% if message.report %}
+                            <span class="msg-content report-msg">/!\ Message reported</span>
+                            {% else %}
+                            <span class="msg-content">{{ message.content }}</span>
+    
+                            {% endif %}
+    
+                                <span class="msg-date">{{ message.dateCreated|date('d/m/Y H:i') }}</span>
+                                </p>
                         {% endif %}
-                        {% if message.report %}
-                        <span class="msg-content report-msg">/!\ Message reported</span>
-                        {% else %}
-                        <span class="msg-content">{{ message.content }}</span>
-
-                        {% endif %}
-
-                            <span class="msg-date">{{ message.dateCreated|date('d/m/Y H:i') }}</span>
-                            </p>
                     {% endfor %}
                   {% endif %}
 
@@ -73,6 +74,7 @@
 
 
       </div>
+
           <div class="contacts-box">
               <div class="header-contacts">
                   Ajouter User
@@ -87,15 +89,19 @@
                   {% endfor %}
               </div>
           </div>
+
+{% endblock %}
+
+
+{% block javascripts %}
     <script>
-                var objDiv = document.getElementById("divExample");
-                objDiv.scrollTop = objDiv.scrollHeight;
-
-                var form = document.getElementById("addgroupform");
-
-                document.getElementById("addbuttongroup").addEventListener("click", function () {
-                    form.submit();
-                });
-        </script>
-  </body>
-</html>
+        var objDiv = document.getElementById("divExample");
+        objDiv.scrollTop = objDiv.scrollHeight;
+        
+        var form = document.getElementById("addgroupform");
+        
+        document.getElementById("addbuttongroup").addEventListener("click", function () {
+            form.submit();
+        });
+    </script>
+{% endblock %}
