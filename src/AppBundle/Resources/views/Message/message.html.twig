@@ -17,7 +17,6 @@
                   </form>
               </div>
               <div class="container-contacts">
-                  <button class="contact create-group" id="addbuttongroup" >+</button>
                   {% for group in groups %}
                     {% if group.enable %}
                         <a class="contact {% if group.id == current_group.id %} active {% endif %}" href="{{ path('group', {id_group:group.id}) }}">
@@ -48,9 +47,9 @@
                             <span class="msg-content report-msg">/!\ Message reported</span>
                             {% else %}
                             <span class="msg-content">{{ message.content }}</span>
-    
+
                             {% endif %}
-    
+
                                 <span class="msg-date">{{ message.dateCreated|date('d/m/Y H:i') }}</span>
                                 </p>
                         {% endif %}
@@ -77,18 +76,18 @@
 
           <div class="contacts-box">
               <div class="header-contacts">
-                  Ajouter User
-                  <form action="{{ path('groupAdd') }}" method="post" id="addgroupform">
+                  <form action="{{ path('groupAdd') }}" method="post" id="adduserform">
                       {{ form_widget(form2.name) }}
                       {{ form_rest(form2) }}
                   </form>
               </div>
               <div class="container-contacts">
                   {% for user in userAll %}
-                             <div class="user"> <a href="{{ path('addUser', {id_group:id_group,id_user:user.id}) }}">{{ user.firstname }} </a></div><br>
+                            <a class="contact" href="{{ path('addUser', {id_group:id_group,id_user:user.id}) }}">{{ user.firstname }} {{user.lastname}} </a>
                   {% endfor %}
               </div>
           </div>
+      </div>
 
 {% endblock %}
 
@@ -97,9 +96,9 @@
     <script>
         var objDiv = document.getElementById("divExample");
         objDiv.scrollTop = objDiv.scrollHeight;
-        
+
         var form = document.getElementById("addgroupform");
-        
+
         document.getElementById("addbuttongroup").addEventListener("click", function () {
             form.submit();
         });
