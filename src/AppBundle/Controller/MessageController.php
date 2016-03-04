@@ -28,8 +28,8 @@ class MessageController extends Controller{
 	private $groupLastMessage = null;
 	private $repoMessage = null;
 	private $repoChatGroup = null;
-    private $repoUser = null;
-    private $userAll = null;
+        private $repoUser = null;
+        private $userAll = null;
 
     /**
      * @Route("/", name="message")

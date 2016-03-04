@@ -42,7 +42,7 @@ class LoadGroupFixtures extends AbstractFixture implements OrderedFixtureInterfa
 			$manager->persist ( $chatGroup );
 			$i ++;
 		}
-                $chatGroup->setEnable(1);
+                $chatGroup->setEnable(true);
 		$manager->flush ();
 	}
 
