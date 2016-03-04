@@ -108,9 +108,7 @@ class MessageController extends Controller{
         if($form2->isSubmitted() && $form2->isValid()){
             $this->saveChatGroup($group);
         }
-        $root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
-
-        return $this->redirect($root."group/".$group->getId());
+        return $this->redirect($this->generateUrl('group', array('id_group' => $group->getId())));
     }
 
 
@@ -170,8 +168,6 @@ class MessageController extends Controller{
         $report = $this->get("lolochat.messageservice");
         $report->add($id_message);
 
-		$root = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/';
-
-        return $this->redirect($root."group/".$id_group);
+	return $this->redirect($this->generateUrl('group', array('id_group' => $id_group)));
     }
 }
