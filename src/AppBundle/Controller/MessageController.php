@@ -116,7 +116,6 @@ class MessageController extends Controller
         $message = new Message();
         $group = new ChatGroup();
 
-        $form = $this->createForm(CreateMessageForm::Class, $message);
         $form2 = $this->createForm(AddGroupForm::Class, $group);
 
         $form2->handleRequest($request);
