@@ -9,7 +9,6 @@ before_script:
   - mysql -e 'create database lolochat;'
   - cp app/config/parameters.yml.travis app/config/parameters.yml
   - composer install
-  - php bin/console doctrine:database:create
   - php bin/console assets:install
   - php bin/console doctrine:schema:update --force --dump-sql
   - php bin/console doctrine:fixtures:load
