@@ -5,11 +5,15 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * ChatGroup
  *
  * @ORM\Table(name="chat_group")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ChatGroupRepository")
+ * @UniqueEntity("name")
  */
 class ChatGroup
 {
@@ -46,6 +50,7 @@ class ChatGroup
      * @var string
      * 
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $name;
 

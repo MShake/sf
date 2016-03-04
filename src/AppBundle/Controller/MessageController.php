@@ -28,8 +28,8 @@ class MessageController extends Controller{
 	private $groupLastMessage = null;
 	private $repoMessage = null;
 	private $repoChatGroup = null;
-        private $repoUser = null;
-        private $userAll = null;
+	private $repoUser = null;
+	private $userAll = null;
 
     /**
      * @Route("/", name="message")
@@ -108,8 +108,9 @@ class MessageController extends Controller{
 
         if($form2->isSubmitted() && $form2->isValid()){
             $this->saveChatGroup($group);
+            return $this->redirect($this->generateUrl('group', array('id_group' => $group->getId())));
         }
-        return $this->redirect($this->generateUrl('group', array('id_group' => $group->getId())));
+        return $this->redirect($this->generateUrl('message'));
     }
 
 
