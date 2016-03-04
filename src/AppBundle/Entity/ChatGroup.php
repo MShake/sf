@@ -30,7 +30,7 @@ class ChatGroup
     {
         $this->messages = new ArrayCollection();
         $this->users = new ArrayCollection();
-        $this->setEnable(1);
+        $this->setEnable(true);
     }
     
     /**

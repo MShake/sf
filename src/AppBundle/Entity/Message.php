@@ -174,8 +174,8 @@ class Message
     public function __construct()
     {
             $this->setDateCreated(new \DateTime());
-            $this->setReport(0);
-            $this->setEnable(1);
+            $this->setReport(false);
+            $this->setEnable(true);
     }
 
     /**

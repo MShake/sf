@@ -51,7 +51,7 @@ class User extends BaseUser
     public function __construct()
     {
     	parent::__construct();
-    	  $this->messages = new ArrayCollection();
+    	$this->messages = new ArrayCollection();
         $this->groups = new ArrayCollection();
         $this->roles = array('ROLE_USER');
     }
